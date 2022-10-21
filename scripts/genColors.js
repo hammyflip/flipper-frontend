@@ -26,7 +26,7 @@ function parseColorVariableName(str) {
 
 function getColorMap() {
   const data = fs.readFileSync(
-    "src/css/global/colors/ColorVariables.css",
+    "css/global/colors/ColorVariables.css",
     "utf8"
   );
   const lines = data.split("\n").filter((line) => line.includes("--color"));
@@ -41,7 +41,7 @@ function getColorMap() {
 
 function getColorVariablesDarkMode() {
   const data = fs.readFileSync(
-    "src/css/global/colors/ColorVariablesDarkMode.css",
+    "css/global/colors/ColorVariablesDarkMode.css",
     "utf8"
   );
   const lines = data.split("\n").filter((line) => line.includes("--color"));
@@ -50,7 +50,7 @@ function getColorVariablesDarkMode() {
 
 function getColorVariablesLightMode() {
   const data = fs.readFileSync(
-    "src/css/global/colors/ColorVariablesLightMode.css",
+    "css/global/colors/ColorVariablesLightMode.css",
     "utf8"
   );
   const lines = data.split("\n").filter((line) => line.includes("--color"));
@@ -63,7 +63,7 @@ function getColorVariablesLightMode() {
 
 function outputColorClasses(colorMap) {
   const logger = fs.createWriteStream(
-    "src/css/global/colors/ColorClasses.css",
+    "css/global/colors/ColorClasses.css",
     {
       flags: "w",
     }
@@ -83,7 +83,7 @@ function outputColorClasses(colorMap) {
 
 function outputBackgroundColorClasses(colorMap) {
   const logger = fs.createWriteStream(
-    "src/css/global/colors/BackgroundColorClasses.css",
+    "css/global/colors/BackgroundColorClasses.css",
     {
       flags: "w",
     }
