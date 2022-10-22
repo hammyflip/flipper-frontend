@@ -1,3 +1,4 @@
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import ResponsiveContainer from "src/components/ResponsiveContainer";
 import styles from "@/css/pages/home/PlayFlipGame.module.css";
 import Header1 from "src/components/text/Header1";
@@ -11,6 +12,12 @@ import TailsIcon from "src/components/icons/TailsIcon";
 import formatDecimals from "src/utils/number/formatDecimals";
 import { PlayFlipGameContextProvider } from "src/context/PlayFlipGameContext";
 import usePlayFlipGameContext from "src/hooks/usePlayFlipGameContext";
+import useSolanaContext from "src/hooks/useSolanaContext";
+import invariant from "tiny-invariant";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { WRAPPED_SOL_MINT } from "@hammyflip/flipper-sdk/dist/constants/AccountConstants";
+import combineTransactions from "src/utils/solana/combineTransactions";
+import filterNulls from "src/utils/array/filterNulls";
 
 function AmountButton({ amountInSol }: { amountInSol: number }) {
   const { amountInSol: amountInSolContext, setAmountInSol } =
@@ -109,25 +116,59 @@ function ChooseHammy() {
   );
 }
 
+function InsideContext() {
+  const { amountInSol, headsOrTails } = usePlayFlipGameContext();
+  const { connection, flipperSdk } = useSolanaContext();
+  const { publicKey, sendTransaction } = useWallet();
+
+  console.log(amountInSol, headsOrTails);
+  return (
+    <ResponsiveContainer>
+      <div className={styles.container}>
+        <Header1 colorClass={ColorClass.Navy} textTransform="uppercase">
+          Double or nothing your SOL
+        </Header1>
+        <ChooseHammy />
+        <ChooseAmount />
+        <ButtonWithText
+          buttonTheme={ButtonTheme.Yellow}
+          disabled={amountInSol == null || headsOrTails == null}
+          fontClass={FontClass.Header1}
+          onClick={async () => {
+            invariant(flipperSdk != null);
+            invariant(publicKey != null);
+            invariant(sendTransaction != null);
+            const tx1 = await flipperSdk.createBettorInfoIfNeededTx({
+              bettor: publicKey,
+              treasuryMint: WRAPPED_SOL_MINT,
+            });
+            const tx2 = await flipperSdk.placeBetTx(
+              {
+                bettor: publicKey,
+                treasuryMint: WRAPPED_SOL_MINT,
+              },
+              {
+                amount: amountInSol! * LAMPORTS_PER_SOL,
+                bets: headsOrTails === "heads" ? 0 : 1,
+                numFlips: 1,
+              }
+            );
+            const tx = combineTransactions(filterNulls([tx1, tx2]));
+            const txid = await sendTransaction(tx, connection);
+          }}
+          textTransform="uppercase"
+        >
+          Hammyflip
+        </ButtonWithText>
+      </div>
+    </ResponsiveContainer>
+  );
+}
+
 export default function PlayFlipGame() {
   return (
     <PlayFlipGameContextProvider>
-      <ResponsiveContainer>
-        <div className={styles.container}>
-          <Header1 colorClass={ColorClass.Navy} textTransform="uppercase">
-            Double or nothing your SOL
-          </Header1>
-          <ChooseHammy />
-          <ChooseAmount />
-          <ButtonWithText
-            buttonTheme={ButtonTheme.Yellow}
-            fontClass={FontClass.Header1}
-            textTransform="uppercase"
-          >
-            Hammyflip
-          </ButtonWithText>
-        </div>
-      </ResponsiveContainer>
+      <InsideContext />
     </PlayFlipGameContextProvider>
   );
 }

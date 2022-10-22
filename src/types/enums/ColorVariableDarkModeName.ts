@@ -9,6 +9,7 @@ enum ColorVariableDarkModeName {
   BeigeDark = "--color-beigeDark-darkMode",
   BeigeLight = "--color-beigeLight-darkMode",
   Dimmer = "--color-dimmer-darkMode",
+  Ghost = "--color-ghost-darkMode",
   Navy = "--color-navy-darkMode",
   NavyHover = "--color-navyHover-darkMode",
   Pink = "--color-pink-darkMode",

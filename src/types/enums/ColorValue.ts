@@ -9,12 +9,15 @@ enum ColorValue {
   BeigeDark = "var(--color-beigeDark)",
   BeigeLight = "var(--color-beigeLight)",
   Dimmer = "var(--color-dimmer)",
+  Ghost = "var(--color-ghost)",
   Navy = "var(--color-navy)",
   NavyHover = "var(--color-navyHover)",
   Pink = "var(--color-pink)",
   Rust = "var(--color-rust)",
   WinterGreen = "var(--color-winterGreen)",
+  WinterGreenHover = "var(--color-winterGreenHover)",
   Yellow = "var(--color-yellow)",
+  YellowHover = "var(--color-yellowHover)",
 }
 
 export default ColorValue;

@@ -20,6 +20,10 @@
   color: var(--color-beigeLight);
 }
 
+.colorGhost {
+  color: var(--color-ghost);
+}
+
 .colorNavy {
   color: var(--color-navy);
 }
@@ -40,7 +44,15 @@
   color: var(--color-winterGreen);
 }
 
+.colorWinterGreenHover {
+  color: var(--color-winterGreenHover);
+}
+
 .colorYellow {
   color: var(--color-yellow);
+}
+
+.colorYellowHover {
+  color: var(--color-yellowHover);
 }
 

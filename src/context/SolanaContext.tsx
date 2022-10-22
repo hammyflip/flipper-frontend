@@ -1,8 +1,10 @@
-import FlipperSdk from "@hammyflip/flipper-sdk";
+import FlipperSdk, { AUTHORITIES } from "@hammyflip/flipper-sdk";
 import { Connection } from "@solana/web3.js";
 import { Context, createContext, useMemo } from "react";
-import { WalletProvider as WalletProviderImport } from "@solana/wallet-adapter-react";
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import {
+  useWallet,
+  WalletProvider as WalletProviderImport,
+} from "@solana/wallet-adapter-react";
 import {
   GlowWalletAdapter,
   PhantomWalletAdapter,
@@ -11,6 +13,7 @@ import {
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import getRpcUrl from "src/utils/solana/getRpcUrl";
 import { Maybe } from "src/types/UtilityTypes";
+import getEnvironment from "src/utils/env/getEnvironment";
 
 // Default styles that can be overridden by your app
 require("@solana/wallet-adapter-react-ui/styles.css");
@@ -34,6 +37,32 @@ type Props = {
   children: any;
 };
 
+function Inner({ children }: Props) {
+  const wallet = useWallet();
+
+  return (
+    <SolanaContext.Provider
+      value={{
+        connection,
+        flipperSdk:
+          wallet == null
+            ? null
+            : new FlipperSdk({
+                authority: AUTHORITIES[getEnvironment()],
+                connection,
+                wallet: {
+                  publicKey: wallet.publicKey!,
+                  signAllTransactions: wallet.signAllTransactions!,
+                  signTransaction: wallet.signTransaction!,
+                },
+              }),
+      }}
+    >
+      {children}
+    </SolanaContext.Provider>
+  );
+}
+
 export default function SolanaContextProvider({ children }: Props) {
   const wallets = useMemo(
     () => [
@@ -47,9 +76,7 @@ export default function SolanaContextProvider({ children }: Props) {
   return (
     <WalletProviderImport wallets={wallets} autoConnect>
       <WalletModalProvider>
-        <SolanaContext.Provider value={{ connection, flipperSdk: null }}>
-          {children}
-        </SolanaContext.Provider>
+        <Inner>{children}</Inner>
       </WalletModalProvider>
     </WalletProviderImport>
   );

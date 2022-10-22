@@ -17,9 +17,10 @@ import "@/css/global/shadows/ShadowVariables.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 
+import SolanaContextProvider from "src/context/SolanaContext";
+
 // Necessary to put down here so that these styles take precedence
 import "@/css/global/Wallet.css";
-import SolanaContextProvider from "src/context/SolanaContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

@@ -9,12 +9,15 @@ enum ColorVariableName {
   BeigeDark = "--color-beigeDark",
   BeigeLight = "--color-beigeLight",
   Dimmer = "--color-dimmer",
+  Ghost = "--color-ghost",
   Navy = "--color-navy",
   NavyHover = "--color-navyHover",
   Pink = "--color-pink",
   Rust = "--color-rust",
   WinterGreen = "--color-winterGreen",
+  WinterGreenHover = "--color-winterGreenHover",
   Yellow = "--color-yellow",
+  YellowHover = "--color-yellowHover",
 }
 
 export default ColorVariableName;

@@ -20,6 +20,10 @@
   background-color: var(--color-dimmer);
 }
 
+.backgroundColorGhost {
+  background-color: var(--color-ghost);
+}
+
 .backgroundColorNavy {
   background-color: var(--color-navy);
 }
@@ -40,7 +44,15 @@
   background-color: var(--color-winterGreen);
 }
 
+.backgroundColorWinterGreenHover {
+  background-color: var(--color-winterGreenHover);
+}
+
 .backgroundColorYellow {
   background-color: var(--color-yellow);
+}
+
+.backgroundColorYellowHover {
+  background-color: var(--color-yellowHover);
 }
 
