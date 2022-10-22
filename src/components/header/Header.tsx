@@ -4,6 +4,8 @@ import Header0 from "src/components/text/Header0";
 import ColorClass from "src/types/enums/ColorClass";
 import TextButton from "src/components/buttons/TextButton";
 import FontClass from "src/types/enums/FontClass";
+import ButtonWithText from "src/components/buttons/ButtonWithText";
+import ButtonTheme from "src/types/enums/ButtonTheme";
 
 function Logo() {
   return (
@@ -28,9 +30,13 @@ export default function Header() {
         How it works
       </TextButton>
       <Logo />
-      <TextButton fontClass={FontClass.Header2} textTransform="uppercase">
-        Connect wallet
-      </TextButton>
+      <ButtonWithText
+        buttonTheme={ButtonTheme.Beige}
+        fontClass={FontClass.Header2}
+        textTransform="uppercase"
+      >
+        Connect Wallet
+      </ButtonWithText>
     </ResponsiveContainer>
   );
 }

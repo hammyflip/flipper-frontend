@@ -1,5 +1,5 @@
 enum ButtonTheme {
-  ReplaceMe = "ReplaceMe",
+  Beige = "Beige",
 }
 
 export default ButtonTheme;

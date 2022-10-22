@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { MouseEventHandler, forwardRef } from "react";
+import { MouseEventHandler, useRef } from "react";
 
-import AmplitudeEvent from "src/types/enums/AmplitudeEvent";
 import ButtonName from "src/types/enums/ButtonName";
 import ButtonTheme from "src/types/enums/ButtonTheme";
 import FontClass from "src/types/enums/FontClass";
@@ -10,7 +9,7 @@ import GlobalClass from "src/types/enums/GlobalClass";
 import Link from "next/link";
 import joinClasses from "src/utils/joinClasses";
 import styles from "@/css/buttons/ButtonWithText.module.css";
-import useLogEvent from "src/hooks/useLogEvent";
+import useResizeObserver from "@react-hook/resize-observer";
 
 type Props = {
   buttonName?: ButtonName;
@@ -31,15 +30,15 @@ type Props = {
   width?: "auto" | "100%";
 };
 
-function getClassNameForButtonTheme(
+function getButtonClassName(
   buttonTheme: ButtonTheme,
   isLink: boolean,
   disabled: boolean
 ): string {
   switch (buttonTheme) {
-    case ButtonTheme.ReplaceMe:
+    case ButtonTheme.Beige:
       return joinClasses(
-        isLink ? styles.replaceMeThemeLink : styles.replaceMeTheme,
+        isLink ? styles.beigeThemeLink : styles.beigeTheme,
         disabled ? styles.disabled : null
       );
     default:
@@ -49,114 +48,149 @@ function getClassNameForButtonTheme(
   throw new Error(`unsupported buttonTheme ${buttonTheme}`);
 }
 
-// forwardRef required to make this work with NextJS Link, see
-// https://nextjs.org/docs/api-reference/next/link#if-the-child-is-a-function-component.
-const ButtonWithText = forwardRef<HTMLButtonElement, Props>(
-  (
-    {
-      buttonName,
+function getShadowClassName(
+  buttonTheme: ButtonTheme,
+  disabled: boolean
+): string {
+  switch (buttonTheme) {
+    case ButtonTheme.Beige:
+      return joinClasses(
+        styles.beigeShadowTheme,
+        disabled ? styles.shadowDisabled : null
+      );
+    default:
+      break;
+  }
+
+  throw new Error(`unsupported buttonTheme ${buttonTheme}`);
+}
+
+export default function ButtonWithText({
+  buttonName,
+  buttonTheme,
+  children,
+  className,
+  disabled = false,
+  fontClass,
+  height,
+  href,
+  icon,
+  iconPosition = "right",
+  logProperties = {},
+  onClick,
+  style = {},
+  textTransform,
+  type = "button",
+  width = "auto",
+}: Props) {
+  const styleToUse = {
+    ...style,
+    height,
+    ...(textTransform == null ? {} : { textTransform }),
+  };
+  const classNameJoined = joinClasses(
+    getButtonClassName(
       buttonTheme,
-      children,
-      className,
-      disabled = false,
-      fontClass,
-      height,
-      href,
-      icon,
-      iconPosition = "right",
-      logProperties,
-      onClick,
-      style = {},
-      textTransform,
-      type = "button",
-      width = "auto",
-    }: Props,
-    ref
-  ) => {
-    const logEvent = useLogEvent();
-    const styleToUse = {
-      ...style,
-      height,
-      ...(textTransform == null ? {} : { textTransform }),
-    };
-    const classNameJoined = joinClasses(
-      getClassNameForButtonTheme(
-        buttonTheme,
-        type === "link_internal" || type === "link_external",
-        disabled
-      ),
-      styles.button,
-      width === "auto" ? styles.buttonAutoWidth : styles.button100Width,
-      fontClass,
-      className
-    );
+      type === "link_internal" || type === "link_external",
+      disabled
+    ),
+    styles.button,
+    width === "auto" ? styles.buttonAutoWidth : null,
+    fontClass
+  );
+  const buttonContainerClassName = joinClasses(
+    className,
+    styles.buttonContainer
+  );
+  const shadowClassName = joinClasses(
+    styles.shadow,
+    getShadowClassName(buttonTheme, disabled)
+  );
 
-    const childrenWithIcon = (
-      <>
-        {icon && iconPosition === "left" && (
-          <div
-            className={joinClasses(
-              styles.icon,
-              styles.iconLeft,
-              GlobalClass.HideText
-            )}
-          >
-            {icon}
-          </div>
-        )}
-        {children}
-        {icon && iconPosition === "right" && (
-          <div
-            className={joinClasses(
-              styles.icon,
-              styles.iconRight,
-              GlobalClass.HideText
-            )}
-          >
-            {icon}
-          </div>
-        )}
-      </>
-    );
-    const onClickWithLog: MouseEventHandler = (e) => {
-      if (buttonName != null) {
-        logEvent(AmplitudeEvent.ButtonClick, { buttonName, ...logProperties });
-      }
-      if (onClick != null) {
-        onClick(e);
-      }
-    };
+  const buttonRef = useRef(null);
+  const shadowRef = useRef(null);
+  useResizeObserver(buttonRef, (entry) => {
+    // @ts-ignore
+    shadowRef.current.style.height = `${entry.borderBoxSize[0].blockSize}px`;
+    // @ts-ignore
+    shadowRef.current.style.width = `${entry.borderBoxSize[0].inlineSize}px`;
+  });
+  const shadow = <div className={shadowClassName} ref={shadowRef} />;
 
-    if (type === "link_internal") {
-      return (
-        <Link href={href ?? ""}>
+  const childrenWithIcon = (
+    <>
+      {icon && iconPosition === "left" && (
+        <div
+          className={joinClasses(
+            styles.icon,
+            styles.iconLeft,
+            GlobalClass.HideText
+          )}
+        >
+          {icon}
+        </div>
+      )}
+      {children}
+      {icon && iconPosition === "right" && (
+        <div
+          className={joinClasses(
+            styles.icon,
+            styles.iconRight,
+            GlobalClass.HideText
+          )}
+        >
+          {icon}
+        </div>
+      )}
+    </>
+  );
+
+  const onClickWithLog = (e: any) => {
+    // TODO: log?
+    if (onClick != null) {
+      onClick(e);
+    }
+  };
+
+  if (type === "link_internal") {
+    return (
+      <Link href={href ?? ""}>
+        <div className={buttonContainerClassName}>
           <div
             className={joinClasses(classNameJoined, styles.linkContent)}
             onClick={onClickWithLog}
+            ref={buttonRef}
             style={styleToUse}
           >
             {childrenWithIcon}
           </div>
-        </Link>
-      );
-    }
+          {shadow}
+        </div>
+      </Link>
+    );
+  }
 
-    if (type === "link_external") {
-      return (
+  if (type === "link_external") {
+    return (
+      <div className={buttonContainerClassName}>
         <a
           className={joinClasses(classNameJoined, styles.linkContent)}
           href={href ?? ""}
           onClick={onClickWithLog}
+          ref={buttonRef}
           style={styleToUse}
         >
           {childrenWithIcon}
         </a>
-      );
-    }
+        {shadow}
+      </div>
+    );
+  }
 
-    return (
+  return (
+    <div className={buttonContainerClassName}>
       <button
-        ref={ref}
+        ref={buttonRef}
         className={classNameJoined}
         disabled={disabled}
         onClick={onClickWithLog}
@@ -166,8 +200,7 @@ const ButtonWithText = forwardRef<HTMLButtonElement, Props>(
       >
         {childrenWithIcon}
       </button>
-    );
-  }
-);
-
-export default ButtonWithText;
+      {shadow}
+    </div>
+  );
+}

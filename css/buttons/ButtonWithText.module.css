@@ -5,25 +5,47 @@
   box-sizing: border-box;
   display: inline-flex;
   justify-content: center;
+  left: 0;
   padding: 16px;
+  position: relative;
   outline: none;
   text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
+  top: 0;
+  transition: left 0.2s, top 0.2s;
+  z-index: 1;
+}
+
+.button:active {
+  /* left: 2px; */
+  top: 2px;
 }
 
 .button:disabled,
 .disabled {
+  background-color: var(--color-tan) !important;
+  border: 2px solid var(--color-ghost) !important;
+  color: var(--color-ghost) !important;
   cursor: default;
-  opacity: 48%;
   pointer-events: none;
+}
+
+.button:enabled:hover {
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .button:hover {
+    /* left: 2px; */
+    top: 2px;
+  }
 }
 
 .buttonAutoWidth {
   padding: 16px 24px;
 }
 
-.button:enabled:hover {
-  cursor: pointer;
+.buttonContainer {
+  position: relative;
 }
 
 .icon {
@@ -44,29 +66,42 @@
   cursor: pointer;
 }
 
+.shadow {
+  border-radius: 100px;
+  /* left: 5px; */
+  position: absolute;
+  top: 5px;
+}
+
+.shadowDisabled {
+  background-color: var(--color-ghost) !important;
+}
+
 /*
  * Themes
  */
 
-/* Replace me theme */
+/* Navy theme */
 
-.replaceMeTheme,
-.replaceMeThemeLink {
-  background-color: transparent;
-  border: 2px solid var(--color-lightPink);
-  color: var(--color-lightPink);
+.beigeTheme,
+.beigeThemeLink {
+  background-color: var(--color-beigeLight);
+  border: 2px solid var(--color-navy);
+  color: var(--color-navy);
 }
 
-.replaceMeTheme:enabled:active,
-.replaceMeThemeLink:active {
-  background-color: var(--color-lightPink);
-  color: var(--color-white);
+.beigeTheme:enabled:active,
+.beigeThemeLink:active {
+  background-color: var(--color-beigeDark);
 }
 
 @media (hover: hover) {
-  .replaceMeTheme:enabled:hover,
-  .replaceMeThemeLink:hover {
-    background-color: var(--color-lightPink);
-    color: var(--color-white);
+  .beigeTheme:enabled:hover,
+  .beigeThemeLink:hover {
+    background-color: var(--color-beigeDark);
   }
+}
+
+.beigeShadowTheme {
+  background-color: var(--color-navy);
 }
