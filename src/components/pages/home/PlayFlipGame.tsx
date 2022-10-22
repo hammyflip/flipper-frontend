@@ -8,6 +8,30 @@ import FontClass from "src/types/enums/FontClass";
 import ButtonTheme from "src/types/enums/ButtonTheme";
 import HeadsIcon from "src/components/icons/HeadsIcon";
 import TailsIcon from "src/components/icons/TailsIcon";
+import formatDecimals from "src/utils/number/formatDecimals";
+import { PlayFlipGameContextProvider } from "src/context/PlayFlipGameContext";
+import usePlayFlipGameContext from "src/hooks/usePlayFlipGameContext";
+
+function AmountButton({ amountInSol }: { amountInSol: number }) {
+  const { amountInSol: amountInSolContext, setAmountInSol } =
+    usePlayFlipGameContext();
+
+  return (
+    <ButtonWithText
+      buttonTheme={
+        amountInSolContext === amountInSol
+          ? ButtonTheme.WinterGreen
+          : ButtonTheme.Beige
+      }
+      className={styles.chooseAmountButton}
+      fontClass={FontClass.Header2}
+      onClick={() => setAmountInSol(amountInSol)}
+      width="100%"
+    >
+      {formatDecimals(amountInSol, 0)} SOL
+    </ButtonWithText>
+  );
+}
 
 function ChooseAmount() {
   return (
@@ -20,44 +44,18 @@ function ChooseAmount() {
         Choose how much
       </Header2>
       <div className={styles.chooseAmountButtons}>
-        <ButtonWithText
-          buttonTheme={ButtonTheme.Beige}
-          className={styles.chooseAmountButton}
-          fontClass={FontClass.Header2}
-          width="100%"
-        >
-          0.05 SOL
-        </ButtonWithText>
-        <ButtonWithText
-          buttonTheme={ButtonTheme.Beige}
-          className={styles.chooseAmountButton}
-          fontClass={FontClass.Header2}
-          width="100%"
-        >
-          0.1 SOL
-        </ButtonWithText>
-        <ButtonWithText
-          buttonTheme={ButtonTheme.Beige}
-          className={styles.chooseAmountButton}
-          fontClass={FontClass.Header2}
-          width="100%"
-        >
-          0.2 SOL
-        </ButtonWithText>
-        <ButtonWithText
-          buttonTheme={ButtonTheme.Beige}
-          className={styles.chooseAmountButton}
-          fontClass={FontClass.Header2}
-          width="100%"
-        >
-          0.5 SOL
-        </ButtonWithText>
+        <AmountButton amountInSol={0.05} />
+        <AmountButton amountInSol={0.1} />
+        <AmountButton amountInSol={0.2} />
+        <AmountButton amountInSol={0.5} />
       </div>
     </div>
   );
 }
 
 function ChooseHammy() {
+  const { headsOrTails, setHeadsOrTails } = usePlayFlipGameContext();
+
   return (
     <div className={styles.chooseHammy}>
       <Header2
@@ -70,9 +68,15 @@ function ChooseHammy() {
       <div className={styles.chooseHammyButtons}>
         <ButtonWithText
           borderRadius={24}
-          buttonTheme={ButtonTheme.Beige}
+          buttonTheme={
+            headsOrTails === "heads"
+              ? ButtonTheme.WinterGreen
+              : ButtonTheme.Beige
+          }
           fontClass={FontClass.Header2}
+          onClick={() => setHeadsOrTails("heads")}
           style={{ padding: "16px 24px" }}
+          textTransform="uppercase"
         >
           <div className={styles.buttonContent}>
             <div className={styles.coin}>
@@ -83,9 +87,15 @@ function ChooseHammy() {
         </ButtonWithText>
         <ButtonWithText
           borderRadius={24}
-          buttonTheme={ButtonTheme.Beige}
+          buttonTheme={
+            headsOrTails === "tails"
+              ? ButtonTheme.WinterGreen
+              : ButtonTheme.Beige
+          }
           fontClass={FontClass.Header2}
+          onClick={() => setHeadsOrTails("tails")}
           style={{ padding: "16px 24px" }}
+          textTransform="uppercase"
         >
           <div className={styles.buttonContent}>
             <div className={styles.coin}>
@@ -101,21 +111,23 @@ function ChooseHammy() {
 
 export default function PlayFlipGame() {
   return (
-    <ResponsiveContainer>
-      <div className={styles.container}>
-        <Header1 colorClass={ColorClass.Navy} textTransform="uppercase">
-          Double or nothing your SOL
-        </Header1>
-        <ChooseHammy />
-        <ChooseAmount />
-        <ButtonWithText
-          buttonTheme={ButtonTheme.Yellow}
-          fontClass={FontClass.Header1}
-          textTransform="uppercase"
-        >
-          Hammyflip
-        </ButtonWithText>
-      </div>
-    </ResponsiveContainer>
+    <PlayFlipGameContextProvider>
+      <ResponsiveContainer>
+        <div className={styles.container}>
+          <Header1 colorClass={ColorClass.Navy} textTransform="uppercase">
+            Double or nothing your SOL
+          </Header1>
+          <ChooseHammy />
+          <ChooseAmount />
+          <ButtonWithText
+            buttonTheme={ButtonTheme.Yellow}
+            fontClass={FontClass.Header1}
+            textTransform="uppercase"
+          >
+            Hammyflip
+          </ButtonWithText>
+        </div>
+      </ResponsiveContainer>
+    </PlayFlipGameContextProvider>
   );
 }
