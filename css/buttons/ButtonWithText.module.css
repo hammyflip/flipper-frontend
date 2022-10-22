@@ -23,9 +23,9 @@
 
 .button:disabled,
 .disabled {
-  background-color: var(--color-navy) !important;
+  background-color: var(--color-ghost) !important;
   border: 2px solid var(--color-ghost) !important;
-  color: var(--color-ghost) !important;
+  color: white !important;
   cursor: default;
   pointer-events: none;
 }
@@ -76,7 +76,7 @@
 }
 
 .shadowDisabled {
-  background-color: var(--color-ghost) !important;
+  background-color: var(--color-navy) !important;
 }
 
 /*
