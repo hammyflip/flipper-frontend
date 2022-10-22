@@ -12,6 +12,7 @@ import styles from "@/css/buttons/ButtonWithText.module.css";
 import useResizeObserver from "@react-hook/resize-observer";
 
 type Props = {
+  borderRadius?: number;
   buttonName?: ButtonName;
   buttonTheme: ButtonTheme;
   children: string | JSX.Element | Array<string | JSX.Element>;
@@ -46,6 +47,11 @@ function getButtonClassName(
         isLink ? styles.winterGreenThemeLink : styles.winterGreenTheme,
         disabled ? styles.disabled : null
       );
+    case ButtonTheme.Yellow:
+      return joinClasses(
+        isLink ? styles.yellowThemeLink : styles.yellowTheme,
+        disabled ? styles.disabled : null
+      );
     default:
       break;
   }
@@ -68,6 +74,11 @@ function getShadowClassName(
         styles.winterGreenShadowTheme,
         disabled ? styles.shadowDisabled : null
       );
+    case ButtonTheme.Yellow:
+      return joinClasses(
+        styles.yellowShadowTheme,
+        disabled ? styles.shadowDisabled : null
+      );
     default:
       break;
   }
@@ -76,6 +87,7 @@ function getShadowClassName(
 }
 
 export default function ButtonWithText({
+  borderRadius,
   buttonName,
   buttonTheme,
   children,
@@ -95,6 +107,7 @@ export default function ButtonWithText({
 }: Props) {
   const styleToUse = {
     ...style,
+    borderRadius,
     height,
     ...(textTransform == null ? {} : { textTransform }),
   };
@@ -125,7 +138,9 @@ export default function ButtonWithText({
     // @ts-ignore
     shadowRef.current.style.width = `${entry.borderBoxSize[0].inlineSize}px`;
   });
-  const shadow = <div className={shadowClassName} ref={shadowRef} />;
+  const shadow = (
+    <div className={shadowClassName} ref={shadowRef} style={{ borderRadius }} />
+  );
 
   const childrenWithIcon = (
     <>

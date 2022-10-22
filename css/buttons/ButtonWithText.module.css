@@ -1,17 +1,18 @@
 .button {
   align-items: center;
-  border-radius: 80px;
+  border-radius: 100px;
   border-style: none;
   box-sizing: border-box;
   display: inline-flex;
   justify-content: center;
   left: 0;
-  padding: 16px;
+  padding: 6px;
   position: relative;
   outline: none;
   text-decoration: none;
   top: 0;
   transition: left 0.2s, top 0.2s;
+  width: 100%;
   z-index: 1;
 }
 
@@ -41,7 +42,8 @@
 }
 
 .buttonAutoWidth {
-  padding: 16px 24px;
+  padding: 8px 24px;
+  width: auto;
 }
 
 .buttonContainer {
@@ -128,5 +130,30 @@
 }
 
 .winterGreenShadowTheme {
+  background-color: var(--color-navy);
+}
+
+/* Yellow theme */
+
+.yellowTheme,
+.yellowThemeLink {
+  background-color: var(--color-yellow);
+  border: 2px solid var(--color-navy);
+  color: var(--color-beigeLight);
+}
+
+.yellowTheme:enabled:active,
+.yellowThemeLink:active {
+  background-color: var(--color-yellowHover);
+}
+
+@media (hover: hover) {
+  .yellowTheme:enabled:hover,
+  .yellowThemeLink:hover {
+    background-color: var(--color-yellowHover);
+  }
+}
+
+.yellowShadowTheme {
   background-color: var(--color-navy);
 }

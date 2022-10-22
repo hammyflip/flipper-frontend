@@ -8,12 +8,55 @@
   }
 }
 
+.buttonContent {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  width: 80px;
+}
+
+.chooseAmount, .chooseHammy {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.chooseAmountButton {
+  width: 140px;
+}
+
+.chooseAmountButtons {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.chooseHammyButtons {
+  column-gap: 36px;
+  display: flex;
+}
+
+.coin {
+  align-items: center;
+  background-color: var(--color-yellow);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  height: 59px;
+  width: 59px;
+}
+
 .container {
+  align-items: center;
   background-color: var(--color-beigeDark);
   border-radius: 48px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 64px;
+  row-gap: 48px;
 
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
