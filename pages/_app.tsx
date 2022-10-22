@@ -15,11 +15,11 @@ import "@/css/global/fonts/FontVariables.css";
 import "@/css/global/shadows/ShadowVariables.css";
 
 import type { AppProps } from "next/app";
-import WalletProvider from "src/context/WalletProvider";
 import Head from "next/head";
 
 // Necessary to put down here so that these styles take precedence
 import "@/css/global/Wallet.css";
+import SolanaContextProvider from "src/context/SolanaContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -28,9 +28,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Hammyflip</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <WalletProvider>
+      <SolanaContextProvider>
         <Component {...pageProps} />
-      </WalletProvider>
+      </SolanaContextProvider>
     </>
   );
 }

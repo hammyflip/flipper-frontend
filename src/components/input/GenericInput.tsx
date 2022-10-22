@@ -28,7 +28,7 @@ export default function GenericInput({
   hint,
   hintLengthIndicatorFontClass = FontClass.Body2,
   subLabel,
-  subLabelFontClass = FontClass.SmallCaps,
+  subLabelFontClass = FontClass.Body2,
 }: Props): JSX.Element {
   return (
     <div>
@@ -65,7 +65,7 @@ export default function GenericInput({
       {hint != null && (
         <BodyText
           className={styles.hint}
-          colorClass={ColorClass.Ghost}
+          colorClass={ColorClass.Navy}
           fontClass={hintLengthIndicatorFontClass}
         >
           {hint}

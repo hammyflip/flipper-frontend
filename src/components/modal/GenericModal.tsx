@@ -74,21 +74,18 @@ export default function GenericModal({
               {title != null && (
                 <div className={styles.titleAndClose}>
                   <CloseButton
-                    colorValue={ColorValue.Primary}
+                    colorValue={ColorValue.Navy}
                     isShown={!hideCloseButton}
                     onClick={onHide}
                   />
                   {typeof title === "string" ? (
-                    <Header2 colorClass={ColorClass.Primary} textAlign="center">
+                    <Header2 colorClass={ColorClass.Navy} textAlign="center">
                       {title}
                     </Header2>
                   ) : (
                     title
                   )}
-                  <CloseButton
-                    colorValue={ColorValue.Primary}
-                    isShown={false}
-                  />
+                  <CloseButton colorValue={ColorValue.Navy} isShown={false} />
                 </div>
               )}
               {children}
