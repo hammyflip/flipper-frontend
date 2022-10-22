@@ -14,6 +14,12 @@
   --font-size-body3: 12px;
   --font-weight-body3: 400;
 
+  /* header0 */
+  --font-family-header0: "Righteous", sans-serif;
+  --font-size-header0: 48px;
+  --font-weight-header0: 400;
+  --letter-spacing-header0: 6px;
+
   /* header1 */
   --font-family-header1: "Righteous", sans-serif;
   --font-size-header1: 28px;
@@ -41,6 +47,11 @@
     --font-family-body3: "Work Sans", sans-serif;
     --font-size-body3: 11px;
     --font-weight-body3: 400;
+
+    /* header0 */
+    --font-family-header0: "Righteous", sans-serif;
+    --font-size-header0: 40px;
+    --font-weight-header0: 400;
 
     /* header1 */
     --font-family-header1: "Righteous", sans-serif;

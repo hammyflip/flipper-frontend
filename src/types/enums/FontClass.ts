@@ -17,6 +17,7 @@ enum FontClass {
   Body3Bold = "body3BoldFont",
   Body3Medium = "body3MediumFont",
   Body3SemiBold = "body3SemiBoldFont",
+  Header0 = "header0Font",
   Header1 = "header1Font",
   Header2 = "header2Font",
 }

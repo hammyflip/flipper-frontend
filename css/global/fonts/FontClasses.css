@@ -100,6 +100,14 @@
   line-height: var(--line-height-body3);
 }
 
+.header0Font {
+  font-family: var(--font-family-header0);
+  font-size: var(--font-size-header0);
+  font-weight: var(--font-weight-header0);
+  letter-spacing: var(--letter-spacing-header0);
+  line-height: var(--line-height-header0);
+}
+
 .header1Font {
   font-family: var(--font-family-header1);
   font-size: var(--font-size-header1);
@@ -115,3 +123,4 @@
   letter-spacing: var(--letter-spacing-header2);
   line-height: var(--line-height-header2);
 }
+

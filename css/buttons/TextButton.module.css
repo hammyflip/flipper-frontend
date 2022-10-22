@@ -19,7 +19,7 @@
 /* Themes */
 
 /* Replace me */
-.buttonReplaceMe,
-.buttonReplaceMeActive {
-  color: var(--color-green);
+.buttonNavy,
+.buttonNavyActive {
+  color: var(--color-navy);
 }

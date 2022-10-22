@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import AmplitudeEvent from "src/types/enums/AmplitudeEvent";
 import ButtonName from "src/types/enums/ButtonName";
 import FontClass from "src/types/enums/FontClass";
 import GlobalClass from "src/types/enums/GlobalClass";
@@ -9,14 +8,13 @@ import { MouseEventHandler } from "react";
 import TextButtonTheme from "src/types/enums/TextButtonTheme";
 import joinClasses from "src/utils/joinClasses";
 import styles from "@/css/buttons/TextButton.module.css";
-import useLogEvent from "src/hooks/useLogEvent";
 
 const THEME_TO_CLASS_NAME = {
-  [TextButtonTheme.ReplaceMe]: styles.buttonReplaceMe,
+  [TextButtonTheme.Navy]: styles.buttonNavy,
 };
 
 const THEME_TO_ACTIVE_CLASS_NAME = {
-  [TextButtonTheme.ReplaceMe]: styles.buttonReplaceMeActive,
+  [TextButtonTheme.Navy]: styles.buttonNavyActive,
 };
 
 type Props = {
@@ -39,7 +37,7 @@ type Props = {
 
 export default function TextButton({
   buttonName,
-  buttonTheme = TextButtonTheme.ReplaceMe,
+  buttonTheme = TextButtonTheme.Navy,
   children,
   className,
   display = "flex",
@@ -54,7 +52,6 @@ export default function TextButton({
   textTransform,
   type = "button",
 }: Props): JSX.Element {
-  const logEvent = useLogEvent();
   const classNameJoined = joinClasses(
     styles.button,
     className,
@@ -82,9 +79,7 @@ export default function TextButton({
   );
 
   const onClickWithLog: MouseEventHandler = (e) => {
-    if (buttonName != null) {
-      logEvent(AmplitudeEvent.ButtonClick, { buttonName, ...logProperties });
-    }
+    // TODO: add logging?
     if (onClick != null) {
       onClick(e);
     }

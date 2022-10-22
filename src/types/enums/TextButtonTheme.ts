@@ -1,5 +1,5 @@
 enum TextButtonTheme {
-  ReplaceMe = "ReplaceMe",
+  Navy = "Navy",
 }
 
 export default TextButtonTheme;

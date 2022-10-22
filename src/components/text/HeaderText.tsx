@@ -37,6 +37,7 @@ export default function HeaderText({
   };
 
   switch (fontClass) {
+    case FontClass.Header0:
     case FontClass.Header1:
       return (
         <h1 className={classNameJoined} style={style}>
