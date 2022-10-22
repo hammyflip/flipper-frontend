@@ -4,8 +4,7 @@ import Header0 from "src/components/text/Header0";
 import ColorClass from "src/types/enums/ColorClass";
 import TextButton from "src/components/buttons/TextButton";
 import FontClass from "src/types/enums/FontClass";
-import ButtonWithText from "src/components/buttons/ButtonWithText";
-import ButtonTheme from "src/types/enums/ButtonTheme";
+import ConnectWalletButton from "src/components/buttons/ConnectWalletButton";
 
 function Logo() {
   return (
@@ -26,17 +25,15 @@ function Logo() {
 export default function Header() {
   return (
     <ResponsiveContainer className={styles.container}>
-      <TextButton fontClass={FontClass.Header2} textTransform="uppercase">
-        How it works
-      </TextButton>
+      <div className={styles.left}>
+        <TextButton fontClass={FontClass.Header2} textTransform="uppercase">
+          How it works
+        </TextButton>
+      </div>
       <Logo />
-      <ButtonWithText
-        buttonTheme={ButtonTheme.Beige}
-        fontClass={FontClass.Header2}
-        textTransform="uppercase"
-      >
-        Connect Wallet
-      </ButtonWithText>
+      <div className={styles.right}>
+        <ConnectWalletButton />
+      </div>
     </ResponsiveContainer>
   );
 }
