@@ -9,8 +9,11 @@
 }
 
 .container {
+  background-color: var(--color-beigeDark);
+  border-radius: 48px;
   display: flex;
   justify-content: center;
+  padding: 64px;
 
   animation-duration: 0.5s;
   animation-fill-mode: forwards;

@@ -4,6 +4,7 @@ import ResponsiveContainer from "src/components/ResponsiveContainer";
 import ButtonTheme from "src/types/enums/ButtonTheme";
 import FontClass from "src/types/enums/FontClass";
 import styles from "@/css/pages/home/ConnectWalletOrPlay.module.css";
+import PlayFlipGame from "src/components/pages/home/PlayFlipGame";
 
 export default function ConnectWalletOrPlay() {
   const { publicKey } = useWallet();
@@ -19,5 +20,5 @@ export default function ConnectWalletOrPlay() {
     );
   }
 
-  return <div>wat</div>;
+  return <PlayFlipGame />;
 }
