@@ -5,6 +5,7 @@ import ColorClass from "src/types/enums/ColorClass";
 import TextButton from "src/components/buttons/TextButton";
 import FontClass from "src/types/enums/FontClass";
 import ConnectWalletButton from "src/components/buttons/ConnectWalletButton";
+import ButtonTheme from "src/types/enums/ButtonTheme";
 
 function Logo() {
   return (
@@ -30,9 +31,14 @@ export default function Header() {
           How it works
         </TextButton>
       </div>
-      <Logo />
+      <div className={styles.center}>
+        <Logo />
+      </div>
       <div className={styles.right}>
-        <ConnectWalletButton />
+        <ConnectWalletButton
+          buttonTheme={ButtonTheme.Beige}
+          fontClass={FontClass.Header2}
+        />
       </div>
     </ResponsiveContainer>
   );

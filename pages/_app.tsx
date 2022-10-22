@@ -18,6 +18,7 @@ import type { AppProps } from "next/app";
 import WalletProvider from "src/context/WalletProvider";
 import Head from "next/head";
 
+// Necessary to put down here so that these styles take precedence
 import "@/css/global/Wallet.css";
 
 function MyApp({ Component, pageProps }: AppProps) {

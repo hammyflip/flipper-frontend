@@ -1,6 +1,6 @@
 .button {
   align-items: center;
-  border-radius: 100px;
+  border-radius: 80px;
   border-style: none;
   box-sizing: border-box;
   display: inline-flex;
@@ -70,7 +70,7 @@
   border-radius: 100px;
   /* left: 5px; */
   position: absolute;
-  top: 5px;
+  top: 6px;
 }
 
 .shadowDisabled {
@@ -81,7 +81,7 @@
  * Themes
  */
 
-/* Navy theme */
+/* Beige theme */
 
 .beigeTheme,
 .beigeThemeLink {
@@ -103,5 +103,30 @@
 }
 
 .beigeShadowTheme {
+  background-color: var(--color-navy);
+}
+
+/* Winter green theme */
+
+.winterGreenTheme,
+.winterGreenThemeLink {
+  background-color: var(--color-winterGreen);
+  border: 2px solid var(--color-navy);
+  color: var(--color-beigeLight);
+}
+
+.winterGreenTheme:enabled:active,
+.winterGreenThemeLink:active {
+  background-color: var(--color-winterGreenHover);
+}
+
+@media (hover: hover) {
+  .winterGreenTheme:enabled:hover,
+  .winterGreenThemeLink:hover {
+    background-color: var(--color-winterGreenHover);
+  }
+}
+
+.winterGreenShadowTheme {
   background-color: var(--color-navy);
 }

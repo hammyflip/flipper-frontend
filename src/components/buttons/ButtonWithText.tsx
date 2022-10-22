@@ -41,6 +41,11 @@ function getButtonClassName(
         isLink ? styles.beigeThemeLink : styles.beigeTheme,
         disabled ? styles.disabled : null
       );
+    case ButtonTheme.WinterGreen:
+      return joinClasses(
+        isLink ? styles.winterGreenThemeLink : styles.winterGreenTheme,
+        disabled ? styles.disabled : null
+      );
     default:
       break;
   }
@@ -56,6 +61,11 @@ function getShadowClassName(
     case ButtonTheme.Beige:
       return joinClasses(
         styles.beigeShadowTheme,
+        disabled ? styles.shadowDisabled : null
+      );
+    case ButtonTheme.WinterGreen:
+      return joinClasses(
+        styles.winterGreenShadowTheme,
         disabled ? styles.shadowDisabled : null
       );
     default:

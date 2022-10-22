@@ -26,9 +26,14 @@ function PopoverContent() {
   );
 }
 
-export default function ConnectWalletButton() {
+type Props = {
+  buttonTheme: ButtonTheme;
+  fontClass: FontClass;
+};
+
+export default function ConnectWalletButton({ buttonTheme, fontClass }: Props) {
   const { setVisible } = useWalletModal();
-  const { publicKey, sendTransaction } = useWallet();
+  const { publicKey } = useWallet();
   const [isShown, setIsShown] = useState(false);
   useEffect(() => {
     // publicKey takes a little while to populate. Without this delay,
@@ -44,8 +49,8 @@ export default function ConnectWalletButton() {
   if (publicKey == null) {
     return (
       <ButtonWithText
-        buttonTheme={ButtonTheme.Beige}
-        fontClass={FontClass.Header2}
+        buttonTheme={buttonTheme}
+        fontClass={fontClass}
         onClick={() => setVisible(true)}
         textTransform="uppercase"
       >
@@ -61,8 +66,8 @@ export default function ConnectWalletButton() {
       trigger="click"
     >
       <ButtonWithText
-        buttonTheme={ButtonTheme.Beige}
-        fontClass={FontClass.Header2}
+        buttonTheme={buttonTheme}
+        fontClass={fontClass}
         textTransform="uppercase"
       >
         {shortenAddress(publicKey.toString())}
