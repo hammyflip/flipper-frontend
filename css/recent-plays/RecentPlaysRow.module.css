@@ -1,0 +1,21 @@
+.coin {
+  align-items: center;
+  background-color: var(--color-yellow);
+  border-radius: 50%;
+  box-shadow: -3px 3px var(--color-yellowHover);
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left {
+  align-items: center;
+  column-gap: 16px;
+  display: flex;
+}

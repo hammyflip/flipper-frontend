@@ -1,8 +1,13 @@
-export default function HeadsIcon(): JSX.Element {
+type Props = {
+  height?: number;
+  width?: number;
+};
+
+export default function HeadsIcon({ height, width }: Props): JSX.Element {
   return (
     <svg
-      width="40"
-      height="33"
+      width={width ?? 40}
+      height={height ?? 33}
       viewBox="0 0 40 33"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
