@@ -36,6 +36,7 @@ export default function PlayFlipGameResults() {
         fontClass={FontClass.Header1}
         onClick={reset}
         style={{ width: 300 }}
+        textTransform="uppercase"
         width="100%"
       >
         Again!!!
