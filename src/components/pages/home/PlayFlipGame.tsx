@@ -4,10 +4,12 @@ import PlayFlipGameSendingTransaction from "src/components/pages/home/PlayFlipGa
 import PlayFlipGameStart from "src/components/pages/home/PlayFlipGameStart";
 import { PlayFlipGameContextProvider } from "src/context/PlayFlipGameContext";
 import usePlayFlipGameContext from "src/hooks/usePlayFlipGameContext";
+import useProcessExistingBet from "src/hooks/useProcessExistingBet";
 import assertUnreachable from "src/utils/assertUnreachable";
 
 function InsideContext() {
   const { step } = usePlayFlipGameContext();
+  useProcessExistingBet();
 
   switch (step) {
     case "choose_bet":

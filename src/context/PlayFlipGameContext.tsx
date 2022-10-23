@@ -7,6 +7,7 @@ import { Maybe } from "src/types/UtilityTypes";
 import processFlip from "src/utils/api/post/processFlip";
 import emptyFunction from "src/utils/emptyFunction";
 import emptyFunctionAsync from "src/utils/emptyFunctionAsync";
+import notifyUnexpectedError from "src/utils/toast/notifyUnexpectedError";
 
 type Step =
   | "choose_bet"
@@ -18,12 +19,14 @@ export type PlayFlipGameContextData = {
   amountInSol: Maybe<number>;
   didUserWinBet: Maybe<boolean>;
   headsOrTails: Maybe<HeadsOrTails>;
+  processExistingAttemptFailed: boolean;
   processTxid: (txid: string) => Promise<void>;
   reset: () => void;
   step: Step;
   setAmountInSol: (val: Maybe<number>) => void;
   setDidUserWinBet: (val: Maybe<boolean>) => void;
   setHeadsOrTails: (val: Maybe<HeadsOrTails>) => void;
+  setProcessExistingAttemptFailed: (val: boolean) => void;
   setStep: (val: Step) => void;
 };
 
@@ -32,12 +35,14 @@ export const PlayFlipGameContext: Context<PlayFlipGameContextData> =
     amountInSol: null,
     didUserWinBet: null,
     headsOrTails: null,
+    processExistingAttemptFailed: false,
     processTxid: emptyFunctionAsync,
     reset: emptyFunction,
     step: "choose_bet",
     setAmountInSol: emptyFunction,
     setDidUserWinBet: emptyFunction,
     setHeadsOrTails: emptyFunction,
+    setProcessExistingAttemptFailed: emptyFunction,
     setStep: emptyFunction,
   });
 
@@ -50,6 +55,8 @@ export function PlayFlipGameContextProvider(props: ProviderProps): JSX.Element {
   const [amountInSol, setAmountInSol] = useState<Maybe<number>>(null);
   const [didUserWinBet, setDidUserWinBet] = useState<Maybe<boolean>>(null);
   const [headsOrTails, setHeadsOrTails] = useState<Maybe<HeadsOrTails>>(null);
+  const [processExistingAttemptFailed, setProcessExistingAttemptFailed] =
+    useState<boolean>(false);
   const [step, setStep] = useState<Step>("choose_bet");
   const { refetch } = useRecentPlaysQuery();
 
@@ -59,20 +66,16 @@ export function PlayFlipGameContextProvider(props: ProviderProps): JSX.Element {
         amountInSol,
         didUserWinBet,
         headsOrTails,
+        processExistingAttemptFailed,
         processTxid: async (txid) => {
-          try {
-            setStep("processing_transaction");
+          setStep("processing_transaction");
 
-            const { didUserWinBet } = await processFlip(txid);
-            setDidUserWinBet(didUserWinBet);
+          const { didUserWinBet } = await processFlip(txid);
+          setDidUserWinBet(didUserWinBet);
 
-            refetch();
+          refetch();
 
-            setStep("results");
-          } catch {
-            // TODO: show error?
-            setStep("choose_bet");
-          }
+          setStep("results");
         },
         reset: () => {
           setAmountInSol(null);
@@ -84,6 +87,7 @@ export function PlayFlipGameContextProvider(props: ProviderProps): JSX.Element {
         setAmountInSol,
         setDidUserWinBet,
         setHeadsOrTails,
+        setProcessExistingAttemptFailed,
         setStep,
       }}
     >

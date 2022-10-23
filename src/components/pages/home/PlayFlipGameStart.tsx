@@ -19,6 +19,7 @@ import filterNulls from "src/utils/array/filterNulls";
 import PlayFlipGameGeneric from "src/components/pages/home/PlayFlipGameGeneric";
 import useProcessExistingBet from "src/hooks/useProcessExistingBet";
 import HEADS_OR_TAILS_TO_NUMBER from "src/constants/HeadsOrTailsToNumber";
+import notifyUnexpectedError from "src/utils/toast/notifyUnexpectedError";
 
 function AmountButton({ amountInSol }: { amountInSol: number }) {
   const { amountInSol: amountInSolContext, setAmountInSol } =
@@ -118,11 +119,10 @@ function ChooseHammy() {
 }
 
 export default function PlayFlipGameStart() {
-  const { amountInSol, headsOrTails, processTxid, setDidUserWinBet, setStep } =
+  const { amountInSol, headsOrTails, processTxid, setStep } =
     usePlayFlipGameContext();
   const { connection, flipperSdk } = useSolanaContext();
   const { publicKey, sendTransaction } = useWallet();
-  useProcessExistingBet();
 
   return (
     <PlayFlipGameGeneric fadeIn rowGap={48}>
@@ -164,7 +164,7 @@ export default function PlayFlipGameStart() {
 
             await processTxid(txid);
           } catch {
-            // TODO: show error?
+            notifyUnexpectedError();
             setStep("choose_bet");
           }
         }}
