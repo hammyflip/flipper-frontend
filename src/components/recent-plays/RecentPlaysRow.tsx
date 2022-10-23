@@ -49,7 +49,9 @@ export default function RecentPlaysRow({
           {didWin ? <span className={ColorClass.Yellow}>doubled</span> : "lost"}
         </Body1>
       </div>
-      <Body1 colorClass={ColorClass.Navy}>{getTimeDifference(time)}</Body1>
+      <Body1 className={styles.time} colorClass={ColorClass.Navy}>
+        {getTimeDifference(time)}
+      </Body1>
     </div>
   );
 }
