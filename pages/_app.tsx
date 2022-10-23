@@ -16,11 +16,16 @@ import "@/css/global/shadows/ShadowVariables.css";
 
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import SolanaContextProvider from "src/context/SolanaContext";
 
 // Necessary to put down here so that these styles take precedence
 import "@/css/global/Wallet.css";
+import PlayFlipGame from "src/components/pages/home/PlayFlipGame";
+import { PlayFlipGameContextProvider } from "src/context/PlayFlipGameContext";
+
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -29,9 +34,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Hammyflip</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <SolanaContextProvider>
-        <Component {...pageProps} />
-      </SolanaContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <SolanaContextProvider>
+          <PlayFlipGameContextProvider>
+            <Component {...pageProps} />
+          </PlayFlipGameContextProvider>
+        </SolanaContextProvider>
+      </QueryClientProvider>
     </>
   );
 }

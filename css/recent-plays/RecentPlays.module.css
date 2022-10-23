@@ -4,9 +4,14 @@
   padding: 52px 84px;
 }
 
+.loadingSpinner {
+  align-self: center;
+}
+
 .rows {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   margin-top: 36px;
   row-gap: 24px;
 }

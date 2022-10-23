@@ -6,6 +6,7 @@ import TextButton from "src/components/buttons/TextButton";
 import FontClass from "src/types/enums/FontClass";
 import ConnectWalletButton from "src/components/buttons/ConnectWalletButton";
 import ButtonTheme from "src/types/enums/ButtonTheme";
+import DelayRender from "src/components/containers/DelayRender";
 
 function Logo() {
   return (
@@ -35,10 +36,12 @@ export default function Header() {
         <Logo />
       </div>
       <div className={styles.right}>
-        <ConnectWalletButton
-          buttonTheme={ButtonTheme.Beige}
-          fontClass={FontClass.Header2}
-        />
+        <DelayRender>
+          <ConnectWalletButton
+            buttonTheme={ButtonTheme.Beige}
+            fontClass={FontClass.Header2}
+          />
+        </DelayRender>
       </div>
     </ResponsiveContainer>
   );
