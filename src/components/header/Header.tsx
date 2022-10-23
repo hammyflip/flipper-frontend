@@ -7,6 +7,7 @@ import FontClass from "src/types/enums/FontClass";
 import ConnectWalletButton from "src/components/buttons/ConnectWalletButton";
 import ButtonTheme from "src/types/enums/ButtonTheme";
 import DelayRender from "src/components/containers/DelayRender";
+import Body1 from "src/components/text/Body1";
 
 function Logo() {
   return (
@@ -27,21 +28,28 @@ function Logo() {
 export default function Header() {
   return (
     <ResponsiveContainer className={styles.container}>
-      <div className={styles.left}>
-        <TextButton fontClass={FontClass.Header2} textTransform="uppercase">
-          How it works
-        </TextButton>
+      <div className={styles.row1}>
+        <div className={styles.left}>
+          <TextButton fontClass={FontClass.Header2} textTransform="uppercase">
+            How it works
+          </TextButton>
+        </div>
+        <div className={styles.center}>
+          <Logo />
+        </div>
+        <div className={styles.right}>
+          <DelayRender>
+            <ConnectWalletButton
+              buttonTheme={ButtonTheme.Beige}
+              fontClass={FontClass.Header2}
+            />
+          </DelayRender>
+        </div>
       </div>
-      <div className={styles.center}>
-        <Logo />
-      </div>
-      <div className={styles.right}>
-        <DelayRender>
-          <ConnectWalletButton
-            buttonTheme={ButtonTheme.Beige}
-            fontClass={FontClass.Header2}
-          />
-        </DelayRender>
+      <div className={styles.row2}>
+        <Body1 colorClass={ColorClass.Navy} textAlign="center">
+          Flip your SOL for double or nothing
+        </Body1>
       </div>
     </ResponsiveContainer>
   );

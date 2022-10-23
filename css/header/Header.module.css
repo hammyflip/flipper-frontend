@@ -4,9 +4,6 @@
 }
 
 .container {
-  align-items: center;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   padding-bottom: 48px;
   padding-top: 64px;
 }
@@ -19,4 +16,17 @@
 .right {
   display: flex;
   justify-content: flex-end;
+}
+
+
+.row1 {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.row2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
 }
