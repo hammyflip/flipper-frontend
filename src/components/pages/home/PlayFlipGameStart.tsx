@@ -18,6 +18,7 @@ import combineTransactions from "src/utils/solana/combineTransactions";
 import filterNulls from "src/utils/array/filterNulls";
 import PlayFlipGameGeneric from "src/components/pages/home/PlayFlipGameGeneric";
 import processFlip from "src/utils/api/post/processFlip";
+import useRecentPlaysQuery from "src/hooks/queries/useRecentPlaysQuery";
 
 function AmountButton({ amountInSol }: { amountInSol: number }) {
   const { amountInSol: amountInSolContext, setAmountInSol } =
@@ -121,6 +122,7 @@ export default function PlayFlipGameStart() {
     usePlayFlipGameContext();
   const { connection, flipperSdk } = useSolanaContext();
   const { publicKey, sendTransaction } = useWallet();
+  const { refetch } = useRecentPlaysQuery();
 
   return (
     <PlayFlipGameGeneric rowGap={48}>
@@ -163,6 +165,8 @@ export default function PlayFlipGameStart() {
 
             const { didUserWinBet } = await processFlip(txid);
             setDidUserWinBet(didUserWinBet);
+
+            refetch();
 
             setStep("results");
           } catch {

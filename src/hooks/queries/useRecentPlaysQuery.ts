@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import getApiUrl from "src/utils/api/getApiUrl";
+import dayjs from "src/utils/dates/dayjsex";
 
 export default function useRecentPlaysQuery() {
   return useQuery<{
@@ -18,6 +19,6 @@ export default function useRecentPlaysQuery() {
       fetch(`${getApiUrl()}/getRecentPlays?skip=0&take=10`).then((res) =>
         res.json()
       ),
-    { refetchInterval: 5000 }
+    { refetchInterval: dayjs.duration({ seconds: 5 }).asMilliseconds() }
   );
 }
