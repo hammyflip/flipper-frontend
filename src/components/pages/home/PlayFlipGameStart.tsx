@@ -17,8 +17,8 @@ import { WRAPPED_SOL_MINT } from "@hammyflip/flipper-sdk/dist/constants/AccountC
 import combineTransactions from "src/utils/solana/combineTransactions";
 import filterNulls from "src/utils/array/filterNulls";
 import PlayFlipGameGeneric from "src/components/pages/home/PlayFlipGameGeneric";
-import processFlip from "src/utils/api/post/processFlip";
-import useRecentPlaysQuery from "src/hooks/queries/useRecentPlaysQuery";
+import useProcessExistingBet from "src/hooks/useProcessExistingBet";
+import HEADS_OR_TAILS_TO_NUMBER from "src/constants/HeadsOrTailsToNumber";
 
 function AmountButton({ amountInSol }: { amountInSol: number }) {
   const { amountInSol: amountInSolContext, setAmountInSol } =
@@ -118,11 +118,11 @@ function ChooseHammy() {
 }
 
 export default function PlayFlipGameStart() {
-  const { amountInSol, headsOrTails, setDidUserWinBet, setStep } =
+  const { amountInSol, headsOrTails, processTxid, setDidUserWinBet, setStep } =
     usePlayFlipGameContext();
   const { connection, flipperSdk } = useSolanaContext();
   const { publicKey, sendTransaction } = useWallet();
-  const { refetch } = useRecentPlaysQuery();
+  useProcessExistingBet();
 
   return (
     <PlayFlipGameGeneric fadeIn rowGap={48}>
@@ -139,6 +139,7 @@ export default function PlayFlipGameStart() {
           invariant(flipperSdk != null);
           invariant(publicKey != null);
           invariant(sendTransaction != null);
+          invariant(headsOrTails != null);
           const tx1 = await flipperSdk.createBettorInfoIfNeededTx({
             bettor: publicKey,
             treasuryMint: WRAPPED_SOL_MINT,
@@ -150,7 +151,7 @@ export default function PlayFlipGameStart() {
             },
             {
               amount: amountInSol! * LAMPORTS_PER_SOL,
-              bets: headsOrTails === "heads" ? 0 : 1,
+              bets: HEADS_OR_TAILS_TO_NUMBER[headsOrTails],
               numFlips: 1,
             }
           );
@@ -161,14 +162,7 @@ export default function PlayFlipGameStart() {
           try {
             const txid = await sendTransaction(tx, connection);
 
-            setStep("processing_transaction");
-
-            const { didUserWinBet } = await processFlip(txid);
-            setDidUserWinBet(didUserWinBet);
-
-            refetch();
-
-            setStep("results");
+            await processTxid(txid);
           } catch {
             // TODO: show error?
             setStep("choose_bet");
