@@ -4,7 +4,7 @@ import ColorClass from "src/types/enums/ColorClass";
 
 export default function PlayFlipGameProcessingTransaction() {
   return (
-    <PlayFlipGameGeneric>
+    <PlayFlipGameGeneric rowGap={36}>
       <Header1
         colorClass={ColorClass.Navy}
         textAlign="center"

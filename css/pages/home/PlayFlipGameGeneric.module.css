@@ -14,9 +14,8 @@
   border-radius: 48px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 64px;
-  row-gap: 48px;
 
   animation-duration: 0.5s;
   animation-fill-mode: forwards;

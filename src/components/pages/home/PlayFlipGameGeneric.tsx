@@ -3,12 +3,15 @@ import ResponsiveContainer from "src/components/ResponsiveContainer";
 
 type Props = {
   children: any;
+  rowGap: number;
 };
 
-export default function PlayFlipGameGeneric({ children }: Props) {
+export default function PlayFlipGameGeneric({ children, rowGap }: Props) {
   return (
     <ResponsiveContainer>
-      <div className={styles.container}>{children}</div>
+      <div className={styles.container} style={{ rowGap }}>
+        {children}
+      </div>
     </ResponsiveContainer>
   );
 }

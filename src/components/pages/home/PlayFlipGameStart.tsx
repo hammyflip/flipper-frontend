@@ -17,6 +17,7 @@ import { WRAPPED_SOL_MINT } from "@hammyflip/flipper-sdk/dist/constants/AccountC
 import combineTransactions from "src/utils/solana/combineTransactions";
 import filterNulls from "src/utils/array/filterNulls";
 import PlayFlipGameGeneric from "src/components/pages/home/PlayFlipGameGeneric";
+import processFlip from "src/utils/api/post/processFlip";
 
 function AmountButton({ amountInSol }: { amountInSol: number }) {
   const { amountInSol: amountInSolContext, setAmountInSol } =
@@ -116,12 +117,13 @@ function ChooseHammy() {
 }
 
 export default function PlayFlipGameStart() {
-  const { amountInSol, headsOrTails } = usePlayFlipGameContext();
+  const { amountInSol, headsOrTails, setDidUserWinBet, setStep } =
+    usePlayFlipGameContext();
   const { connection, flipperSdk } = useSolanaContext();
   const { publicKey, sendTransaction } = useWallet();
 
   return (
-    <PlayFlipGameGeneric>
+    <PlayFlipGameGeneric rowGap={48}>
       <Header1 colorClass={ColorClass.Navy} textTransform="uppercase">
         Double or nothing your SOL
       </Header1>
@@ -151,9 +153,26 @@ export default function PlayFlipGameStart() {
             }
           );
           const tx = combineTransactions(filterNulls([tx1, tx2]));
-          const txid = await sendTransaction(tx, connection);
+
+          setStep("sending_transaction");
+
+          try {
+            const txid = await sendTransaction(tx, connection);
+
+            setStep("processing_transaction");
+
+            const { didUserWinBet } = await processFlip(txid);
+            setDidUserWinBet(didUserWinBet);
+
+            setStep("results");
+          } catch {
+            // TODO: show error?
+            setStep("choose_bet");
+          }
         }}
         textTransform="uppercase"
+        style={{ width: 300 }}
+        width="100%"
       >
         Hammyflip
       </ButtonWithText>
