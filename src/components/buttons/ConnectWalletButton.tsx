@@ -19,8 +19,9 @@ function PopoverContent() {
         buttonTheme={TextButtonTheme.Navy}
         fontClass={FontClass.Header2}
         onClick={disconnect}
+        textTransform="uppercase"
       >
-        Disconnect
+        Disconnect wallet
       </TextButton>
     </div>
   );
