@@ -30,7 +30,7 @@ function Rows() {
         <RecentPlaysRow
           amountInSol={datum.betAmount / LAMPORTS_PER_SOL}
           bettor={shortenAddress(datum.user.id)}
-          didWin={datum.flipsPrediction == datum.flipsResult}
+          didWin={datum.flipsPrediction === datum.flipsResult}
           time={dayjs(datum.timeCreated)}
         />
       ))}

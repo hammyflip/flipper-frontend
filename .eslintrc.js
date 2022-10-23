@@ -39,6 +39,7 @@ module.exports = {
     "func-names": "off",
     "import/order": "off",
     "import/no-unresolved": "off",
+    "no-empty-function": "off",
     "no-nested-ternary": "off",
     "no-plusplus": "off",
     "no-shadow": "off",

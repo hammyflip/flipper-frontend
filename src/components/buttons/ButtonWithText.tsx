@@ -88,7 +88,7 @@ function getShadowClassName(
 
 export default function ButtonWithText({
   borderRadius,
-  buttonName,
+  buttonName: _buttonName,
   buttonTheme,
   children,
   className,
@@ -98,7 +98,7 @@ export default function ButtonWithText({
   href,
   icon,
   iconPosition = "right",
-  logProperties = {},
+  logProperties: _logProperties = {},
   onClick,
   style = {},
   textTransform,

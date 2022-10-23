@@ -1,4 +1,3 @@
-import styles from "@/css/containers/PageBody.module.css";
 import { useEffect, useState } from "react";
 
 type Props = {

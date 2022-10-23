@@ -7,7 +7,6 @@ import { Maybe } from "src/types/UtilityTypes";
 import processFlip from "src/utils/api/post/processFlip";
 import emptyFunction from "src/utils/emptyFunction";
 import emptyFunctionAsync from "src/utils/emptyFunctionAsync";
-import notifyUnexpectedError from "src/utils/toast/notifyUnexpectedError";
 
 type Step =
   | "choose_bet"
@@ -70,8 +69,8 @@ export function PlayFlipGameContextProvider(props: ProviderProps): JSX.Element {
         processTxid: async (txid) => {
           setStep("processing_transaction");
 
-          const { didUserWinBet } = await processFlip(txid);
-          setDidUserWinBet(didUserWinBet);
+          const { didUserWinBet: didUserWinBetInner } = await processFlip(txid);
+          setDidUserWinBet(didUserWinBetInner);
 
           refetch();
 

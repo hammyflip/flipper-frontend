@@ -36,7 +36,7 @@ type Props = {
 };
 
 export default function TextButton({
-  buttonName,
+  buttonName: _buttonName,
   buttonTheme = TextButtonTheme.Navy,
   children,
   className,
@@ -45,7 +45,7 @@ export default function TextButton({
   href,
   icon,
   isActive = false,
-  logProperties,
+  logProperties: _logProperties,
   onClick,
   target,
   textDecoration,

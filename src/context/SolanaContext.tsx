@@ -42,6 +42,7 @@ function Inner({ children }: Props) {
 
   return (
     <SolanaContext.Provider
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         connection,
         flipperSdk:

@@ -17,7 +17,6 @@ import { WRAPPED_SOL_MINT } from "@hammyflip/flipper-sdk/dist/constants/AccountC
 import combineTransactions from "src/utils/solana/combineTransactions";
 import filterNulls from "src/utils/array/filterNulls";
 import PlayFlipGameGeneric from "src/components/pages/home/PlayFlipGameGeneric";
-import useProcessExistingBet from "src/hooks/useProcessExistingBet";
 import HEADS_OR_TAILS_TO_NUMBER from "src/constants/HeadsOrTailsToNumber";
 import notifyUnexpectedError from "src/utils/toast/notifyUnexpectedError";
 

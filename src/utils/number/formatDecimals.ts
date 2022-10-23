@@ -9,5 +9,5 @@ export default function formatDecimals(
   amount: number,
   decimals: number
 ): string {
-  return stripTrailingDecimals(amount / Math.pow(10, decimals));
+  return stripTrailingDecimals(amount / 10 ** decimals);
 }
