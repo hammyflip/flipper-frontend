@@ -16,7 +16,9 @@
   flex-direction: column;
   justify-content: flex-start;
   padding: 64px;
+}
 
+.fadeIn {
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
   animation-name: fadeIn;

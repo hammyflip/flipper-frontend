@@ -125,7 +125,7 @@ export default function PlayFlipGameStart() {
   const { refetch } = useRecentPlaysQuery();
 
   return (
-    <PlayFlipGameGeneric rowGap={48}>
+    <PlayFlipGameGeneric fadeIn rowGap={48}>
       <Header1 colorClass={ColorClass.Navy} textTransform="uppercase">
         Double or nothing your SOL
       </Header1>
