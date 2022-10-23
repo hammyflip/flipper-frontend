@@ -6,5 +6,6 @@ export default async function processFlip(txid: string): Promise<{
 }> {
   const apiUrl = `${getApiUrl()}/processFlip`;
   const results = await axios.post(apiUrl, { txid });
-  return results.data.didUserWinBet;
+  console.log("results", results);
+  return results.data;
 }

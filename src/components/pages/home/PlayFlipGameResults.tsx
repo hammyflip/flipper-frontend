@@ -6,12 +6,22 @@ import ButtonTheme from "src/types/enums/ButtonTheme";
 import ColorClass from "src/types/enums/ColorClass";
 import FontClass from "src/types/enums/FontClass";
 import formatDecimals from "src/utils/number/formatDecimals";
+import Image from "next/image";
 
 export default function PlayFlipGameResults() {
   const { amountInSol, didUserWinBet, reset } = usePlayFlipGameContext();
 
   return (
     <PlayFlipGameGeneric rowGap={36}>
+      <Image
+        height={377}
+        src={
+          didUserWinBet === true
+            ? "/images/won-flip.png"
+            : "/images/lost-flip.png"
+        }
+        width={377}
+      />
       <Header1
         colorClass={ColorClass.Navy}
         textAlign="center"
