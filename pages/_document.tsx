@@ -23,7 +23,7 @@ export default function Document() {
         <link
           href="https://fonts.googleapis.com/css2?family=Righteous&family=Work+Sans:wght@400;500&display=swap"
           rel="stylesheet"
-        ></link>
+        />
 
         {/* Facebook */}
         <meta property="og:url" content="https://www.minymon.com/" />

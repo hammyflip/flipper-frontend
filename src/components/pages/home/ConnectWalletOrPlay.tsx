@@ -14,7 +14,7 @@ export default function ConnectWalletOrPlay() {
     return (
       <ResponsiveContainer>
         <div className={styles.container}>
-          <Image height={240} src="/images/coins.gif" width={547.2} />
+          <Image height={240} priority src="/images/coins.gif" width={547.2} />
           <ConnectWalletButton
             buttonTheme={ButtonTheme.WinterGreen}
             fontClass={FontClass.Header1}

@@ -22,7 +22,6 @@ import SolanaContextProvider from "src/context/SolanaContext";
 
 // Necessary to put down here so that these styles take precedence
 import "@/css/global/Wallet.css";
-import PlayFlipGame from "src/components/pages/home/PlayFlipGame";
 import { PlayFlipGameContextProvider } from "src/context/PlayFlipGameContext";
 
 const queryClient = new QueryClient();

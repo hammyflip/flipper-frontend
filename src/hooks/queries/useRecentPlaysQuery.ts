@@ -8,6 +8,7 @@ export default function useRecentPlaysQuery() {
       betAmount: number;
       flipsPrediction: number;
       flipsResult: number;
+      id: string;
       timeCreated: string;
       user: {
         id: string;

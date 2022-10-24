@@ -31,6 +31,7 @@ function Rows() {
           amountInSol={datum.betAmount / LAMPORTS_PER_SOL}
           bettor={shortenAddress(datum.user.id)}
           didWin={datum.flipsPrediction === datum.flipsResult}
+          key={datum.id}
           time={dayjs(datum.timeCreated)}
         />
       ))}

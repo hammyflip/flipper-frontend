@@ -15,6 +15,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin: auto;
+  max-width: 940px;
   padding: 64px;
 }
 

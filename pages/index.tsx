@@ -6,20 +6,19 @@ import styles from "@/css/pages/home/HomePage.module.css";
 import PageBody from "src/components/containers/PageBody";
 import DelayRender from "src/components/containers/DelayRender";
 
-const Home: NextPage = () => {
-  return (
-    <>
-      <Header />
-      <DelayRender>
-        <PageBody>
-          <div className={styles.body}>
-            <ConnectWalletOrPlay />
-            <RecentPlays />
-          </div>
-        </PageBody>
-      </DelayRender>
-    </>
-  );
-};
+// eslint-disable-next-line react/function-component-definition
+const Home: NextPage = () => (
+  <>
+    <Header />
+    <DelayRender>
+      <PageBody>
+        <div className={styles.body}>
+          <ConnectWalletOrPlay />
+          <RecentPlays />
+        </div>
+      </PageBody>
+    </DelayRender>
+  </>
+);
 
 export default Home;
