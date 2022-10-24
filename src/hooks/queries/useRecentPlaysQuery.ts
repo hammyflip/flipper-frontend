@@ -15,7 +15,7 @@ export default function useRecentPlaysQuery() {
       };
     }>;
   }>(
-    ["key"],
+    ["recentPlays"],
     () =>
       fetch(`${getApiUrl()}/getRecentPlays?skip=0&take=10`).then((res) =>
         res.json()
