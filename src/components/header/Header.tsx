@@ -9,6 +9,7 @@ import ButtonTheme from "src/types/enums/ButtonTheme";
 import DelayRender from "src/components/containers/DelayRender";
 import Body1 from "src/components/text/Body1";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function Logo() {
   return (
@@ -27,6 +28,8 @@ function Logo() {
 }
 
 export default function Header() {
+  const { asPath } = useRouter();
+
   return (
     <ResponsiveContainer className={styles.container}>
       <div className={styles.row1}>
@@ -34,6 +37,7 @@ export default function Header() {
           <TextButton
             fontClass={FontClass.Header2}
             href="/info"
+            textDecoration={asPath === "/info" ? "underline" : undefined}
             textTransform="uppercase"
             type="link_internal"
           >
