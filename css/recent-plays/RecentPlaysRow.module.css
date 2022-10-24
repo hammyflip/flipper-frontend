@@ -11,6 +11,7 @@
 }
 
 .container {
+  align-items: center;
   display: flex;
   column-gap: 24px;
   justify-content: space-between;
