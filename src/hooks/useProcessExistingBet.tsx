@@ -4,7 +4,7 @@ import {
   PartiallyDecodedInstruction,
 } from "@solana/web3.js";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import useSolanaContext from "src/hooks/useSolanaContext";
 import { WRAPPED_SOL_MINT } from "@hammyflip/flipper-sdk/dist/constants/AccountConstants";
 import { parsePlaceBetIx } from "@hammyflip/flipper-sdk";
@@ -37,21 +37,22 @@ export default function useProcessExistingBet() {
     setAmountInSol,
     setHeadsOrTails,
     setProcessExistingAttemptFailed,
-    step,
     setStep,
   } = usePlayFlipGameContext();
+  // See https://github.com/reactwg/react-18/discussions/18 for why this is needed
+  const hasRan = useRef<Record<string, boolean>>({});
 
   useEffect(() => {
-    console.log("useEffect", publicKey?.toString(), step);
     async function run() {
       if (
         publicKey == null ||
         flipperSdk == null ||
         processExistingAttemptFailed ||
-        step !== "choose_bet"
+        hasRan.current[publicKey.toString()] === true
       ) {
         return;
       }
+      hasRan.current[publicKey.toString()] = true;
 
       try {
         const bettorInfo = await flipperSdk.fetchBettorInfo(
@@ -61,7 +62,7 @@ export default function useProcessExistingBet() {
         if (bettorInfo.account.amount.toNumber() > 0) {
           notify({
             description:
-              "You have an existing bet that has not been processed yet",
+              "You have an existing bet that has not been processed yet. We are processing it now.",
             duration: 4,
             message: "Processing existing bet",
           });
@@ -93,7 +94,7 @@ export default function useProcessExistingBet() {
             <ExternalLink href="https://twitter.com/hammyflip">
               Twitter
             </ExternalLink>{" "}
-            for support
+            for support.
           </>
         );
         setStep("choose_bet");
@@ -101,5 +102,6 @@ export default function useProcessExistingBet() {
     }
 
     run();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [processExistingAttemptFailed, publicKey]);
 }
