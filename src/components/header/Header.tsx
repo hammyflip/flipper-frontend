@@ -8,6 +8,7 @@ import ConnectWalletButton from "src/components/buttons/ConnectWalletButton";
 import ButtonTheme from "src/types/enums/ButtonTheme";
 import DelayRender from "src/components/containers/DelayRender";
 import Body1 from "src/components/text/Body1";
+import Link from "next/link";
 
 function Logo() {
   return (
@@ -30,12 +31,22 @@ export default function Header() {
     <ResponsiveContainer className={styles.container}>
       <div className={styles.row1}>
         <div className={styles.left}>
-          <TextButton fontClass={FontClass.Header2} textTransform="uppercase">
-            How it works
+          <TextButton
+            fontClass={FontClass.Header2}
+            href="/info"
+            textTransform="uppercase"
+            type="link_internal"
+          >
+            Info
           </TextButton>
         </div>
         <div className={styles.center}>
-          <Logo />
+          <Link href="/">
+            {/*  eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a>
+              <Logo />
+            </a>
+          </Link>
         </div>
         <div className={styles.right}>
           <DelayRender>
