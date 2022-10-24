@@ -9,6 +9,8 @@
 }
 
 .left {
+  align-items: center;
+  column-gap: 64px;
   display: flex;
   justify-content: flex-start;
 }

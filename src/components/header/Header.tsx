@@ -11,6 +11,33 @@ import Body1 from "src/components/text/Body1";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+function LeftButtons() {
+  const { asPath } = useRouter();
+
+  return (
+    <div className={styles.left}>
+      <TextButton
+        fontClass={FontClass.Header2}
+        href="/info"
+        textDecoration={asPath === "/info" ? "underline" : undefined}
+        textTransform="uppercase"
+        type="link_internal"
+      >
+        Info
+      </TextButton>
+      <TextButton
+        fontClass={FontClass.Header2}
+        href="/stats"
+        textDecoration={asPath === "/stats" ? "underline" : undefined}
+        textTransform="uppercase"
+        type="link_internal"
+      >
+        Stats
+      </TextButton>
+    </div>
+  );
+}
+
 function Logo() {
   return (
     <Header0 textTransform="uppercase">
@@ -28,22 +55,10 @@ function Logo() {
 }
 
 export default function Header() {
-  const { asPath } = useRouter();
-
   return (
     <ResponsiveContainer className={styles.container}>
       <div className={styles.row1}>
-        <div className={styles.left}>
-          <TextButton
-            fontClass={FontClass.Header2}
-            href="/info"
-            textDecoration={asPath === "/info" ? "underline" : undefined}
-            textTransform="uppercase"
-            type="link_internal"
-          >
-            Info
-          </TextButton>
-        </div>
+        <LeftButtons />
         <div className={styles.center}>
           <Link href="/">
             {/*  eslint-disable-next-line jsx-a11y/anchor-is-valid */}
