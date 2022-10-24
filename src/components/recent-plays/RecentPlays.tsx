@@ -10,8 +10,10 @@ import { Suspense } from "react";
 import LoadingSpinner from "src/components/loading/LoadingSpinner";
 import ColorValue from "src/types/enums/ColorValue";
 import useRecentPlaysQuery from "src/hooks/queries/useRecentPlaysQuery";
+import useBreakpoint from "src/hooks/useBreakpoint";
 
 function Rows() {
+  const { isTabletBreakpoint } = useBreakpoint();
   // TODO: refetch when new play occurs
   const { data, isLoading } = useRecentPlaysQuery();
 
@@ -29,7 +31,7 @@ function Rows() {
       {(data ?? { recentPlays: [] }).recentPlays.map((datum) => (
         <RecentPlaysRow
           amountInSol={datum.betAmount / LAMPORTS_PER_SOL}
-          bettor={shortenAddress(datum.user.id)}
+          bettor={shortenAddress(datum.user.id, isTabletBreakpoint)}
           didWin={datum.flipsPrediction === datum.flipsResult}
           key={datum.id}
           time={dayjs(datum.timeCreated)}

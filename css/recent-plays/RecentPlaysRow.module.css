@@ -26,3 +26,9 @@
 .time {
   flex-shrink: 0;
 }
+
+@media only screen and (max-width: 768px) {
+  .container, .left {
+    column-gap: 12px;
+  }
+}

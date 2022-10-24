@@ -19,6 +19,7 @@ import filterNulls from "src/utils/array/filterNulls";
 import PlayFlipGameGeneric from "src/components/pages/home/PlayFlipGameGeneric";
 import HEADS_OR_TAILS_TO_NUMBER from "src/constants/HeadsOrTailsToNumber";
 import notifyUnexpectedError from "src/utils/toast/notifyUnexpectedError";
+import useBreakpoint from "src/hooks/useBreakpoint";
 
 function AmountButton({ amountInSol }: { amountInSol: number }) {
   const { amountInSol: amountInSolContext, setAmountInSol } =
@@ -122,10 +123,15 @@ export default function PlayFlipGameStart() {
     usePlayFlipGameContext();
   const { connection, flipperSdk } = useSolanaContext();
   const { publicKey, sendTransaction } = useWallet();
+  const { isTabletBreakpoint } = useBreakpoint();
 
   return (
-    <PlayFlipGameGeneric fadeIn rowGap={48}>
-      <Header1 colorClass={ColorClass.Navy} textTransform="uppercase">
+    <PlayFlipGameGeneric fadeIn rowGap={isTabletBreakpoint ? 36 : 48}>
+      <Header1
+        colorClass={ColorClass.Navy}
+        textAlign="center"
+        textTransform="uppercase"
+      >
         Double or nothing your SOL
       </Header1>
       <ChooseHammy />
@@ -168,7 +174,7 @@ export default function PlayFlipGameStart() {
           }
         }}
         textTransform="uppercase"
-        style={{ width: 300 }}
+        style={{ width: isTabletBreakpoint ? 270 : 300 }}
         width="100%"
       >
         Hammyflip

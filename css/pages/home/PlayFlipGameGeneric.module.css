@@ -25,3 +25,9 @@
   animation-fill-mode: forwards;
   animation-name: fadeIn;
 }
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 32px;
+  }
+}
