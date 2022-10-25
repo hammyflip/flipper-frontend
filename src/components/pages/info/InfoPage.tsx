@@ -3,6 +3,7 @@ import Header2 from "src/components/text/Header2";
 import ColorClass from "src/types/enums/ColorClass";
 import styles from "@/css/pages/info/InfoPage.module.css";
 import PageBody from "src/components/containers/PageBody";
+import ResponsiveContainer from "src/components/ResponsiveContainer";
 
 const ITEMS = [
   {
@@ -53,15 +54,17 @@ function InfoItem({
 export default function InfoPage() {
   return (
     <PageBody>
-      <div className={styles.container}>
-        {ITEMS.map((item) => (
-          <InfoItem
-            key={item.title}
-            description={item.description}
-            title={item.title}
-          />
-        ))}
-      </div>
+      <ResponsiveContainer>
+        <div className={styles.container}>
+          {ITEMS.map((item) => (
+            <InfoItem
+              key={item.title}
+              description={item.description}
+              title={item.title}
+            />
+          ))}
+        </div>
+      </ResponsiveContainer>
     </PageBody>
   );
 }
