@@ -11,6 +11,7 @@ import Body1 from "src/components/text/Body1";
 import HeadsOrTails from "src/types/HeadsOrTails";
 import assertUnreachable from "src/utils/assertUnreachable";
 import shortenAddress from "src/utils/solana/shortenAddress";
+import pluralize from "src/utils/string/pluralize";
 
 function getPieChartValue(
   numbers: { numHeads: number; numTails: number },
@@ -116,7 +117,7 @@ function Streaks({
         textAlign="center"
         textTransform="uppercase"
       >
-        Highest {streakType} streaks today
+        Highest {streakType} streaks this week
       </Header2>
       <div className={styles.streakRows}>
         {streaks.map((streak, index) => (
@@ -126,7 +127,13 @@ function Streaks({
               {shortenAddress(streak.userId)}
             </Body1>
             <Body1 colorClass={ColorClass.Navy}>
-              {streak.streak} wins in a row
+              {streak.streak}{" "}
+              {streakType === "win"
+                ? pluralize("win", streak.streak)
+                : streak.streak > 1
+                ? "losses"
+                : "loss"}{" "}
+              in a row
             </Body1>
           </div>
         ))}
@@ -147,16 +154,23 @@ function Inner() {
     );
   }
 
+  const flipCount = data.flipResults.numHeads + data.flipResults.numTails;
   return (
     <div className={styles.container}>
       <PieChartWithLabel
         data={getPieChartData(data.flipResults)}
-        description="Actual results of coin flips today"
+        description={`Results from ${flipCount} ${pluralize(
+          "flip",
+          flipCount
+        )} this week`}
         title="Heads/Tails Results"
       />
       <PieChartWithLabel
         data={getPieChartData(data.flipPredictions)}
-        description="What people chose today"
+        description={`Choices from ${flipCount} ${pluralize(
+          "flip",
+          flipCount
+        )} this week`}
         title="Heads/Tails Choices"
       />
       <Streaks streakType="win" streaks={data.winStreaks} />
