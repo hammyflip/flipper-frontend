@@ -103,8 +103,10 @@ function PieChartWithLabel({
 }
 
 function Streaks({
+  streakType,
   streaks,
 }: {
+  streakType: "win" | "losing";
   streaks: Array<{ userId: string; streak: number }>;
 }) {
   return (
@@ -114,7 +116,7 @@ function Streaks({
         textAlign="center"
         textTransform="uppercase"
       >
-        Highest win streaks today
+        Highest {streakType} streaks today
       </Header2>
       <div className={styles.streakRows}>
         {streaks.map((streak, index) => (
@@ -157,8 +159,8 @@ function Inner() {
         description="What people chose today"
         title="Heads/Tails Choices"
       />
-      <Streaks streaks={data.winStreaks} />
-      <Streaks streaks={data.losingStreaks} />
+      <Streaks streakType="win" streaks={data.winStreaks} />
+      <Streaks streakType="losing" streaks={data.losingStreaks} />
     </div>
   );
 }
