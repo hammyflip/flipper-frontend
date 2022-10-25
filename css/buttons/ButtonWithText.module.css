@@ -113,7 +113,8 @@
 .winterGreenTheme,
 .winterGreenThemeLink {
   background-color: var(--color-winterGreen);
-  /* border: 2px solid var(--color-navy); */
+  border: 2px solid var(--color-winterGreen);
+  border-bottom: none;
   color: var(--color-beigeLight);
 }
 
@@ -138,7 +139,8 @@
 .yellowTheme,
 .yellowThemeLink {
   background-color: var(--color-yellow);
-  /* border: 2px solid var(--color-navy); */
+  border: 2px solid var(--color-yellow);
+  border-bottom: none;
   color: var(--color-beigeLight);
 }
 
