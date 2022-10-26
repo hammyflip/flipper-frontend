@@ -1,13 +1,14 @@
 import { Html, Head, Main, NextScript } from "next/document";
 
 // TODO: update these
-const META_DESCRIPTION = "Say hi to your website pet";
+const META_DESCRIPTION =
+  "Solana's best coin flip app. Double your SOL with just a single coin flip!";
 // Different dimensions than twitter
 const META_IMAGE_FACEBOOK =
   "https://firebasestorage.googleapis.com/v0/b/minymon-d541f.appspot.com/o/link_previews%2Fminymon-facebook-preview.png?alt=media&token=e58539f0-897c-4584-8771-dce0140e4174";
 const META_IMAGE_TWITTER =
   "https://firebasestorage.googleapis.com/v0/b/minymon-d541f.appspot.com/o/link_previews%2Fminymon-twitter-preview.png?alt=media&token=eb49eab1-613f-4d5a-ae4f-43b81ef140e5";
-const META_TITLE = "Minymon | A pet for your website";
+const META_TITLE = "Hammyflip | Flip a coin to double your SOL";
 
 export default function Document() {
   return (

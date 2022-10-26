@@ -78,7 +78,7 @@ export default function Header() {
       </div>
       <div className={styles.row2}>
         <Body1 colorClass={ColorClass.Navy} textAlign="center">
-          Flip your SOL for double or nothing
+          Flip a coin to double your SOL
         </Body1>
       </div>
     </ResponsiveContainer>
