@@ -55,35 +55,42 @@ export default function useProcessExistingBet() {
       hasRan.current[publicKey.toString()] = true;
 
       try {
-        const bettorInfo = await flipperSdk.fetchBettorInfo(
-          publicKey,
-          WRAPPED_SOL_MINT
+        let bettorInfo = null;
+        try {
+          bettorInfo = await flipperSdk.fetchBettorInfo(
+            publicKey,
+            WRAPPED_SOL_MINT
+          );
+        } catch {
+          // This will throw if the account does not exist
+          return;
+        }
+        if (bettorInfo == null || bettorInfo.account.amount.toNumber() === 0) {
+          return;
+        }
+        notify({
+          description:
+            "You have an existing bet that has not been processed yet. We are processing it now.",
+          duration: 4,
+          message: "Processing existing bet",
+        });
+        // A bet has already been placed
+        const txs = await connection.getConfirmedSignaturesForAddress2(
+          bettorInfo.pubkey
         );
-        if (bettorInfo.account.amount.toNumber() > 0) {
-          notify({
-            description:
-              "You have an existing bet that has not been processed yet. We are processing it now.",
-            duration: 4,
-            message: "Processing existing bet",
-          });
-          // A bet has already been placed
-          const txs = await connection.getConfirmedSignaturesForAddress2(
-            bettorInfo.pubkey
-          );
-          const txsParsed = filterNulls(
-            await connection.getParsedTransactions(
-              txs.map(({ signature }) => signature)
-            )
-          );
-          const placeBetTx = txsParsed.find((tx) => isPlaceBetTx(tx));
+        const txsParsed = filterNulls(
+          await connection.getParsedTransactions(
+            txs.map(({ signature }) => signature)
+          )
+        );
+        const placeBetTx = txsParsed.find((tx) => isPlaceBetTx(tx));
 
-          if (placeBetTx != null) {
-            setAmountInSol(
-              bettorInfo.account.amount.toNumber() / LAMPORTS_PER_SOL
-            );
-            setHeadsOrTails(NUMBER_TO_HEADS_OR_TAILS[bettorInfo.account.bets]);
-            await processTxid(placeBetTx.transaction.signatures[0]);
-          }
+        if (placeBetTx != null) {
+          setAmountInSol(
+            bettorInfo.account.amount.toNumber() / LAMPORTS_PER_SOL
+          );
+          setHeadsOrTails(NUMBER_TO_HEADS_OR_TAILS[bettorInfo.account.bets]);
+          await processTxid(placeBetTx.transaction.signatures[0]);
         }
       } catch {
         setProcessExistingAttemptFailed(true);
