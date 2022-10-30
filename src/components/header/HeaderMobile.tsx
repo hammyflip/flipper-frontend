@@ -15,8 +15,9 @@ import { useRouter } from "next/router";
 import ConnectWalletButton from "src/components/buttons/ConnectWalletButton";
 import ButtonTheme from "src/types/enums/ButtonTheme";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { useState } from "react";
 
-function PopoverContent() {
+function PopoverContent({ onHidePopover }: { onHidePopover: () => void }) {
   const { asPath } = useRouter();
   const { disconnect, publicKey } = useWallet();
 
@@ -30,7 +31,13 @@ function PopoverContent() {
       ) : (
         <TextButton
           fontClass={FontClass.Header2}
-          onClick={disconnect}
+          onClick={() => {
+            onHidePopover();
+            // Timeout makes the popover hiding UX smoother. If we don't do it,
+            // the button will change from "disconnect" to "connect" as the popover is
+            // fading out.
+            setTimeout(() => disconnect(), 300);
+          }}
           textTransform="uppercase"
         >
           Disconnect wallet
@@ -59,14 +66,18 @@ function PopoverContent() {
 }
 
 export default function HeaderMobile() {
+  const [visible, setVisible] = useState(false);
+
   return (
     <ResponsiveContainer className={styles.container}>
       <div className={styles.row1}>
         <div className={styles.left}>
           <Popover
             placement="bottomLeft"
-            content={<PopoverContent />}
+            content={<PopoverContent onHidePopover={() => setVisible(false)} />}
             trigger="click"
+            visible={visible}
+            onVisibleChange={setVisible}
           >
             <PlainButton className={GlobalClass.HideText}>
               <MenuIcon colorValue={ColorValue.Navy} />
