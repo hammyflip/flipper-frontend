@@ -55,8 +55,8 @@ function ChooseAmount() {
       <div className={styles.chooseAmountButtons}>
         <AmountButton amountInSol={0.05} />
         <AmountButton amountInSol={0.1} />
-        <AmountButton amountInSol={0.2} />
         <AmountButton amountInSol={0.5} />
+        <AmountButton amountInSol={1.0} />
       </div>
     </div>
   );
