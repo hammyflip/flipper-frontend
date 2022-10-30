@@ -4,11 +4,12 @@ import ColorClass from "src/types/enums/ColorClass";
 import styles from "@/css/pages/info/InfoPage.module.css";
 import PageBody from "src/components/containers/PageBody";
 import ResponsiveContainer from "src/components/ResponsiveContainer";
+import ExternalLink from "src/components/links/ExternalLink";
 
 const ITEMS = [
   {
     description:
-      "Hammyflip is a simple coin flip game that runs on Solana. If you win, you receive double the SOL you initally bet! We are working on more games that are coming soon!",
+      "Hammyflip is a simple coin flip game that runs on Solana. If you win, you receive double the SOL you initally bet! We are also working on more games that are coming soon :)",
     title: "What is Hammyflip?",
   },
   {
@@ -30,13 +31,25 @@ const ITEMS = [
       "We plan to support other SPL tokens in the future! Along with other fun games besides just Hammyflip :)",
     title: "Will other tokens be supported?",
   },
+  {
+    description: (
+      <>
+        Please DM our Twitter account (
+        <ExternalLink href="https://twitter.com/hammyflip">
+          @hammyflip
+        </ExternalLink>
+        ) with any questions or concerns.
+      </>
+    ),
+    title: "I need help, where do I go?",
+  },
 ];
 
 function InfoItem({
   description,
   title,
 }: {
-  description: string;
+  description: string | JSX.Element;
   title: string;
 }) {
   return (
