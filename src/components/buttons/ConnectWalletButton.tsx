@@ -30,12 +30,14 @@ type Props = {
   buttonTheme: ButtonTheme;
   disconnectedLabel?: string;
   fontClass: FontClass;
+  width?: number;
 };
 
 export default function ConnectWalletButton({
   buttonTheme,
   disconnectedLabel = "Connect Wallet",
   fontClass,
+  width,
 }: Props) {
   const { setVisible } = useWalletModal();
   const { publicKey } = useWallet();
@@ -47,6 +49,8 @@ export default function ConnectWalletButton({
         fontClass={fontClass}
         onClick={() => setVisible(true)}
         textTransform="uppercase"
+        style={width != null ? { width } : undefined}
+        width={width != null ? "100%" : undefined}
       >
         {disconnectedLabel}
       </ButtonWithText>
@@ -63,6 +67,8 @@ export default function ConnectWalletButton({
         buttonTheme={buttonTheme}
         fontClass={fontClass}
         textTransform="uppercase"
+        style={width != null ? { width } : undefined}
+        width={width != null ? "100%" : undefined}
       >
         {shortenAddress(publicKey.toString())}
       </ButtonWithText>

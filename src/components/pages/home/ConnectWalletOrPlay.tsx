@@ -18,6 +18,7 @@ export default function ConnectWalletOrPlay() {
           <ConnectWalletButton
             buttonTheme={ButtonTheme.WinterGreen}
             fontClass={FontClass.Header1}
+            width={320}
           />
         </div>
       </ResponsiveContainer>
