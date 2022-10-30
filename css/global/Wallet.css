@@ -1,9 +1,10 @@
 .wallet-adapter-modal-title {
-  font-family: var(--font-family-header1);
-  font-size: var(--font-size-header1);
-  font-weight: var(--font-weight-header1);
-  letter-spacing: var(--letter-spacing-header1);
-  line-height: var(--line-height-header1);
+  font-family: var(--font-family-header2);
+  font-size: var(--font-size-header2);
+  font-weight: var(--font-weight-header2);
+  letter-spacing: var(--letter-spacing-header2);
+  line-height: var(--line-height-header2);
+  text-transform: uppercase;
 
   color: var(--color-navy);
 }
@@ -36,4 +37,12 @@
 
 .wallet-adapter-modal-overlay {
   background-color: var(--color-backgroundOverlay);
+}
+
+.wallet-adapter-modal-list-more {
+  color: var(--color-navy);
+}
+
+.wallet-adapter-modal-list-more svg {
+  fill: var(--color-navy);
 }
