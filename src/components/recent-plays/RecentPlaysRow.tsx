@@ -45,7 +45,7 @@ export default function RecentPlaysRow({
       <div className={styles.left}>
         <Coin />
         <Body1 colorClass={ColorClass.Navy}>
-          Wallet {bettor} flipped {formatDecimals(amountInSol, 0)} and{" "}
+          Wallet {bettor} flipped {formatDecimals(amountInSol, 0)} SOL and{" "}
           {didWin ? <span className={ColorClass.Yellow}>doubled</span> : "lost"}
         </Body1>
       </div>

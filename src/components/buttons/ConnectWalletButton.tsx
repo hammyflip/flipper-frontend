@@ -28,10 +28,15 @@ function PopoverContent() {
 
 type Props = {
   buttonTheme: ButtonTheme;
+  disconnectedLabel?: string;
   fontClass: FontClass;
 };
 
-export default function ConnectWalletButton({ buttonTheme, fontClass }: Props) {
+export default function ConnectWalletButton({
+  buttonTheme,
+  disconnectedLabel = "Connect Wallet",
+  fontClass,
+}: Props) {
   const { setVisible } = useWalletModal();
   const { publicKey } = useWallet();
 
@@ -43,7 +48,7 @@ export default function ConnectWalletButton({ buttonTheme, fontClass }: Props) {
         onClick={() => setVisible(true)}
         textTransform="uppercase"
       >
-        Connect Wallet
+        {disconnectedLabel}
       </ButtonWithText>
     );
   }
