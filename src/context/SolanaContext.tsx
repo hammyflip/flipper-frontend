@@ -6,6 +6,7 @@ import {
   WalletProvider as WalletProviderImport,
 } from "@solana/wallet-adapter-react";
 import {
+  BackpackWalletAdapter,
   GlowWalletAdapter,
   PhantomWalletAdapter,
   SolflareWalletAdapter,
@@ -67,9 +68,10 @@ function Inner({ children }: Props) {
 export default function SolanaContextProvider({ children }: Props) {
   const wallets = useMemo(
     () => [
-      new GlowWalletAdapter(),
       new PhantomWalletAdapter(),
+      new GlowWalletAdapter(),
       new SolflareWalletAdapter(),
+      new BackpackWalletAdapter(),
     ],
     []
   );

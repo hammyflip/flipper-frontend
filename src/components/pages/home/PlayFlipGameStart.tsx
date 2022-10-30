@@ -166,10 +166,22 @@ export default function PlayFlipGameStart() {
 
           try {
             const txid = await sendTransaction(tx, connection);
+            if (txid == null) {
+              throw new Error("Failed to sign transaction");
+            }
 
             await processTxid(txid);
-          } catch {
-            notifyUnexpectedError();
+          } catch (e: any) {
+            const errorMessage = e.message;
+            if (
+              ![
+                "Failed to sign transaction",
+                "User rejected the request.",
+                "You cancelled the transaction.",
+              ].includes(errorMessage)
+            ) {
+              notifyUnexpectedError();
+            }
             setStep("choose_bet");
           }
         }}
