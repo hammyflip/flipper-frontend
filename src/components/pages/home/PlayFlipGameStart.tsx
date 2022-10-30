@@ -6,8 +6,6 @@ import Header2 from "src/components/text/Header2";
 import ButtonWithText from "src/components/buttons/ButtonWithText";
 import FontClass from "src/types/enums/FontClass";
 import ButtonTheme from "src/types/enums/ButtonTheme";
-import HeadsIcon from "src/components/icons/HeadsIcon";
-import TailsIcon from "src/components/icons/TailsIcon";
 import formatDecimals from "src/utils/number/formatDecimals";
 import usePlayFlipGameContext from "src/hooks/usePlayFlipGameContext";
 import useSolanaContext from "src/hooks/useSolanaContext";
@@ -20,6 +18,7 @@ import PlayFlipGameGeneric from "src/components/pages/home/PlayFlipGameGeneric";
 import HEADS_OR_TAILS_TO_NUMBER from "src/constants/HeadsOrTailsToNumber";
 import notifyUnexpectedError from "src/utils/toast/notifyUnexpectedError";
 import useBreakpoint from "src/hooks/useBreakpoint";
+import Image from "next/image";
 
 function AmountButton({ amountInSol }: { amountInSol: number }) {
   const { amountInSol: amountInSolContext, setAmountInSol } =
@@ -88,9 +87,7 @@ function ChooseHammy() {
           textTransform="uppercase"
         >
           <div className={styles.buttonContent}>
-            <div className={styles.coin}>
-              <HeadsIcon />
-            </div>
+            <Image src="/images/heads.png" height={64} width={64} priority />
             Heads
           </div>
         </ButtonWithText>
@@ -107,9 +104,7 @@ function ChooseHammy() {
           textTransform="uppercase"
         >
           <div className={styles.buttonContent}>
-            <div className={styles.coin}>
-              <TailsIcon />
-            </div>
+            <Image src="/images/tails.png" height={64} width={64} priority />
             Tails
           </div>
         </ButtonWithText>

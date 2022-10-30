@@ -1,6 +1,6 @@
 import styles from "@/css/recent-plays/RecentPlaysRow.module.css";
 import dayjs, { Dayjs } from "dayjs";
-import HeadsIcon from "src/components/icons/HeadsIcon";
+import Image from "next/image";
 import Body1 from "src/components/text/Body1";
 import ColorClass from "src/types/enums/ColorClass";
 import formatDecimals from "src/utils/number/formatDecimals";
@@ -20,11 +20,7 @@ function getTimeDifference(time: Dayjs) {
 }
 
 function Coin() {
-  return (
-    <div className={styles.coin}>
-      <HeadsIcon width={23.79} height={19.44} />
-    </div>
-  );
+  return <Image src="/images/heads.png" height={36} width={36} />;
 }
 
 type Props = {

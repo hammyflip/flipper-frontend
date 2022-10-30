@@ -28,16 +28,6 @@
   display: flex;
 }
 
-.coin {
-  align-items: center;
-  background-color: var(--color-yellow);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  height: 59px;
-  width: 59px;
-}
-
 @media only screen and (max-width: 768px) {
   .chooseAmount, .chooseHammy {
     row-gap: 16px;
