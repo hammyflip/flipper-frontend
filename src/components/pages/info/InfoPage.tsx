@@ -17,8 +17,20 @@ const ITEMS = [
     title: "What are the odds of winning?",
   },
   {
-    description:
-      "Hammyflip takes a 3% fee on your coin flip bet (for example, betting 1 SOL costs 1.03 SOL).",
+    description: (
+      <>
+        Hammyflip takes a 3% fee on your coin flip bet (e.g. betting 1 SOL costs
+        1.03 SOL).
+        <br />
+        <br />
+        The first time you play, there is also a small one-time cost in order to
+        pay for{" "}
+        <ExternalLink href="https://docs.solana.com/terminology#rent">
+          rent
+        </ExternalLink>
+        . Subsequent plays will not include this cost.
+      </>
+    ),
     title: "What fees do you charge?",
   },
   {
