@@ -6,9 +6,11 @@ import FontClass from "src/types/enums/FontClass";
 import styles from "@/css/pages/home/ConnectWalletOrPlay.module.css";
 import PlayFlipGame from "src/components/pages/home/PlayFlipGame";
 import Image from "next/image";
+import useBreakpoint from "src/hooks/useBreakpoint";
 
 export default function ConnectWalletOrPlay() {
   const { publicKey } = useWallet();
+  const { isMobileBreakpoint } = useBreakpoint();
 
   if (publicKey == null) {
     return (
@@ -18,7 +20,7 @@ export default function ConnectWalletOrPlay() {
           <ConnectWalletButton
             buttonTheme={ButtonTheme.WinterGreen}
             fontClass={FontClass.Header1}
-            width={320}
+            width={isMobileBreakpoint ? 320 : 380}
           />
         </div>
       </ResponsiveContainer>
