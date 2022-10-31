@@ -8,6 +8,7 @@ export default function PlayFlipGameProcessingTransaction() {
     <PlayFlipGameGeneric rowGap={36}>
       <Image
         height={377}
+        priority
         src="/images/processing-transaction.gif"
         width={377}
       />

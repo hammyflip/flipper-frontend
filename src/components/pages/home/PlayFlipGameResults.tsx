@@ -15,6 +15,7 @@ export default function PlayFlipGameResults() {
     <PlayFlipGameGeneric rowGap={36}>
       <Image
         height={377}
+        priority
         src={
           didUserWinBet === true
             ? "/images/won-flip.png"

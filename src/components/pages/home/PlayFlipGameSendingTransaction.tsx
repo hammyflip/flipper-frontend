@@ -6,7 +6,12 @@ import Image from "next/image";
 export default function PlayFlipGameSendingTransaction() {
   return (
     <PlayFlipGameGeneric rowGap={36}>
-      <Image height={377} src="/images/sending-transaction.gif" width={377} />
+      <Image
+        height={377}
+        src="/images/sending-transaction.gif"
+        width={377}
+        priority
+      />
       <Header1
         colorClass={ColorClass.Navy}
         textAlign="center"
