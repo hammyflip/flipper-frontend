@@ -12,7 +12,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@hammyflip/flipper-sdk": "^0.0.14",
+    "@hammyflip/flipper-sdk": "^0.0.15",
     "@react-hook/resize-observer": "^1.2.6",
     "@solana/wallet-adapter-base": "^0.9.18",
     "@solana/wallet-adapter-react": "^0.15.20",
