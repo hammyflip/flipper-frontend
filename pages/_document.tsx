@@ -26,6 +26,11 @@ export default function Document() {
           rel="stylesheet"
         />
 
+        <link
+          rel="apple-touch-icon"
+          href="https://www.hammyflip.com/images/heads.png"
+        />
+
         {/* Facebook */}
         <meta property="og:url" content="https://www.hammyflip.com/" />
         <meta property="og:type" content="website" />
