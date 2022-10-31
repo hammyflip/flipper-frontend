@@ -66,7 +66,11 @@ function InfoItem({
 }) {
   return (
     <div className={styles.infoItem}>
-      <Header2 colorClass={ColorClass.Navy} textAlign="center">
+      <Header2
+        colorClass={ColorClass.Navy}
+        textAlign="center"
+        textTransform="uppercase"
+      >
         {title}
       </Header2>
       <Body1 colorClass={ColorClass.Navy} textAlign="center">
