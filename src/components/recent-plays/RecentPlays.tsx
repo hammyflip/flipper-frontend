@@ -14,7 +14,6 @@ import useBreakpoint from "src/hooks/useBreakpoint";
 
 function Rows() {
   const { isTabletBreakpoint } = useBreakpoint();
-  // TODO: refetch when new play occurs
   const { data, isLoading } = useRecentPlaysQuery();
 
   if (isLoading) {
@@ -35,6 +34,7 @@ function Rows() {
           didWin={datum.flipsPrediction === datum.flipsResult}
           key={datum.id}
           time={dayjs(datum.timeCreated)}
+          txid={datum.txid2}
         />
       ))}
     </>

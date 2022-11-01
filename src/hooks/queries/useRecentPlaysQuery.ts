@@ -10,6 +10,8 @@ export default function useRecentPlaysQuery() {
       flipsResult: number;
       id: string;
       timeCreated: string;
+      txid1: string;
+      txid2: string;
       user: {
         id: string;
       };
