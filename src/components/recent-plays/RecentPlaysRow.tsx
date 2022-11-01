@@ -1,11 +1,9 @@
 import styles from "@/css/recent-plays/RecentPlaysRow.module.css";
 import dayjs, { Dayjs } from "dayjs";
 import Image from "next/image";
-import TextButton from "src/components/buttons/TextButton";
 import ExternalLink from "src/components/links/ExternalLink";
 import Body1 from "src/components/text/Body1";
 import ColorClass from "src/types/enums/ColorClass";
-import TextButtonTheme from "src/types/enums/TextButtonTheme";
 import formatDecimals from "src/utils/number/formatDecimals";
 import getSolanaExplorerTxLink from "src/utils/solana/getSolanaExplorerTxLink";
 import pluralize from "src/utils/string/pluralize";
