@@ -103,6 +103,7 @@ export default function TextButton({
         onClick={onClickWithLog}
         style={style}
         target={target}
+        rel={target === "_blank" ? "noreferrer" : undefined}
       >
         {childrenWithIcon}
       </a>

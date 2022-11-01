@@ -7,6 +7,46 @@ import ColorClass from "src/types/enums/ColorClass";
 import FontClass from "src/types/enums/FontClass";
 import formatDecimals from "src/utils/number/formatDecimals";
 import Image from "next/image";
+import TextButton from "src/components/buttons/TextButton";
+import TextButtonTheme from "src/types/enums/TextButtonTheme";
+import TwitterIcon from "src/components/icons/TwitterIcon";
+import ColorValue from "src/types/enums/ColorValue";
+
+function getTwitterImage(amountInSol: number, didUserWinBet: boolean) {
+  if (didUserWinBet) {
+    switch (amountInSol) {
+      case 0.05:
+        return "https://twitter.com/hammylotto/status/1587244841431232513/photo/1";
+      case 0.1:
+        return "https://twitter.com/hammylotto/status/1587251980916981760/photo/1";
+      case 0.5:
+        return "https://twitter.com/hammylotto/status/1587252012575752193/photo/1";
+      case 1:
+        return "https://twitter.com/hammylotto/status/1587252037955485696/photo/1";
+      default:
+        return "https://twitter.com/hammylotto/status/1587244841431232513/photo/1";
+    }
+  }
+
+  switch (amountInSol) {
+    case 0.05:
+      return "https://twitter.com/hammylotto/status/1587252139004334081/photo/1";
+    case 0.1:
+      return "https://twitter.com/hammylotto/status/1587252364108435456/photo/1";
+    case 0.5:
+      return "https://twitter.com/hammylotto/status/1587252388502511616/photo/1";
+    case 1:
+      return "https://twitter.com/hammylotto/status/1587252413680869376/photo/1";
+    default:
+      return "";
+  }
+}
+
+function getTwitterText(didUserWinBet: boolean) {
+  return didUserWinBet
+    ? "Just doubled my SOL on @hammyflip 🐹"
+    : "Just lost my SOL on @hammyflip 😭🐹";
+}
 
 export default function PlayFlipGameResults() {
   const { amountInSol, didUserWinBet, reset } = usePlayFlipGameContext();
@@ -42,6 +82,19 @@ export default function PlayFlipGameResults() {
       >
         Again!!!
       </ButtonWithText>
+      <TextButton
+        buttonTheme={TextButtonTheme.Navy}
+        fontClass={FontClass.Header2}
+        href={`https://twitter.com/intent/tweet?text=${getTwitterText(
+          didUserWinBet!
+        )} ${getTwitterImage(amountInSol!, didUserWinBet!)}`}
+        icon={<TwitterIcon colorValue={ColorValue.Navy} />}
+        target="_blank"
+        textTransform="uppercase"
+        type="link_external"
+      >
+        Share on Twitter
+      </TextButton>
     </PlayFlipGameGeneric>
   );
 }

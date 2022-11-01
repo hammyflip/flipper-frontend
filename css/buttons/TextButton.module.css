@@ -19,8 +19,8 @@
 
 /* Themes */
 
-/* Replace me */
 .buttonNavy,
-.buttonNavyActive {
+.buttonNavyActive,
+.buttonNavy:hover {
   color: var(--color-navy);
 }
