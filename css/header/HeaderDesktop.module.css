@@ -33,7 +33,7 @@
   margin-top: 8px;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1280px) {
   .container {
     padding-bottom: 36px;
     padding-top: 36px;
@@ -41,11 +41,5 @@
 
   .left {
     column-gap: 36px;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .left {
-    column-gap: 32px;
   }
 }

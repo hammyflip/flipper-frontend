@@ -4,9 +4,9 @@ import useBreakpoint from "src/hooks/useBreakpoint";
 import useIsSsr from "src/hooks/useIsSsr";
 
 function Inner() {
-  const { isMobileBreakpoint } = useBreakpoint();
+  const { isHeaderBreakpoint } = useBreakpoint();
 
-  return isMobileBreakpoint ? <HeaderMobile /> : <HeaderDesktop />;
+  return isHeaderBreakpoint ? <HeaderMobile /> : <HeaderDesktop />;
 }
 
 export default function Header() {

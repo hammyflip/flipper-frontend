@@ -16,6 +16,7 @@ import ConnectWalletButton from "src/components/buttons/ConnectWalletButton";
 import ButtonTheme from "src/types/enums/ButtonTheme";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useState } from "react";
+import TwitterIcon from "src/components/icons/TwitterIcon";
 
 function PopoverContent({ onHidePopover }: { onHidePopover: () => void }) {
   const { asPath } = useRouter();
@@ -60,6 +61,16 @@ function PopoverContent({ onHidePopover }: { onHidePopover: () => void }) {
         type="link_internal"
       >
         Stats
+      </TextButton>
+      <TextButton
+        fontClass={FontClass.Header2}
+        href="https://twitter.com/hammyflip"
+        icon={<TwitterIcon colorValue={ColorValue.Navy} />}
+        target="_blank"
+        textTransform="uppercase"
+        type="link_external"
+      >
+        Twitter
       </TextButton>
     </div>
   );

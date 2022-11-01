@@ -5,7 +5,7 @@ export const BOTTOM_DRAWER_BREAKPOINT = 1090;
 const Breakpoints = {
   Mobile: 640,
   Tablet: FONT_BREAKPOINT,
-  TabletWide: HEADER_BREAKPOINT,
+  Header: HEADER_BREAKPOINT,
   TabletExtraWide: 1024,
   Desktop: BOTTOM_DRAWER_BREAKPOINT,
   DesktopWide: 1280,

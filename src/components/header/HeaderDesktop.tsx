@@ -11,12 +11,22 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import HeaderLogo from "src/components/header/HeaderLogo";
 import useBreakpoint from "src/hooks/useBreakpoint";
+import ExternalLink from "src/components/links/ExternalLink";
+import TwitterIcon from "src/components/icons/TwitterIcon";
+import ColorValue from "src/types/enums/ColorValue";
+import GlobalClass from "src/types/enums/GlobalClass";
 
 function LeftButtons() {
   const { asPath } = useRouter();
 
   return (
     <div className={styles.left}>
+      <ExternalLink
+        className={GlobalClass.HideText}
+        href="https://twitter.com/hammyflip"
+      >
+        <TwitterIcon colorValue={ColorValue.Navy} />
+      </ExternalLink>
       <TextButton
         fontClass={FontClass.Header2}
         href="/info"
