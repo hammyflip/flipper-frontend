@@ -1,0 +1,31 @@
+.container {
+  background-color: var(--color-beigeDark);
+  border-radius: 48px;
+  margin: auto;
+  max-width: 940px;
+  padding: 52px 84px;
+}
+
+.loadingSpinner {
+  align-self: center;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 36px;
+  row-gap: 24px;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 36px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .container {
+    padding: 24px;
+  }
+}
